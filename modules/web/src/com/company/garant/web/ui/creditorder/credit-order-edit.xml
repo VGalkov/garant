@@ -13,7 +13,11 @@
         <instance id="creditOrderDc"
                   class="com.company.garant.entity.CreditOrder">
             <view extends="_local">
-                <property name="credit" view="_minimal"/>
+                <property name="credit" view="_minimal">
+                    <property name="bank" view="_minimal">
+                        <property name="name"/>
+                    </property>
+                </property>
                 <property name="loader" view="_minimal"/>
                 <property name="address" view="_minimal"/>
             </view>
@@ -26,6 +30,7 @@
             <tab id="detailsTab" caption="msg://details">
                 <form id="form1" dataContainer="creditOrderDc" width="450px" captionPosition="TOP" height="AUTO">
                     <column width="100%">
+                        <textField id="bankLabel" property="credit.bank"/>
                         <pickerField id="creditField" property="credit">
                             <actions>
                                 <action id="lookup" type="picker_lookup"/>

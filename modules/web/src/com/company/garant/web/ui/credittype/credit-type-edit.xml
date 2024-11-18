@@ -30,7 +30,7 @@
             <groupBox id="inventoryClassBox" spacing="true" height="100%" >
                 <form id="form" dataContainer="creditTypeDc" width="100%" captionPosition="TOP" height="AUTO" align="TOP_LEFT">
                     <column width="450px">
-                        <textField id="codeField" property="code"/>
+                        <textField id="codeField" property="code" editable="false"/>
                         <textField id="nameField" property="name"/>
                         <textArea id="commentField" property="comment" rows="5"/>
                         <hbox id="editActions" spacing="true" align="TOP_LEFT">
