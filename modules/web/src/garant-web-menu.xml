@@ -9,5 +9,6 @@
     <menu id="application" insertBefore="administration">
         <item screen="garant$Target.browse" caption="mainMsg://menu_config.garant$Target.browse"/>
         <item screen="garant$CreditType.browse" caption="mainMsg://menu_config.garant$CreditType.browse"/>
+        <item screen="garant$Credit.browse" caption="mainMsg://menu_config.garant$Credit.browse"/>
     </menu>
 </menu-config>

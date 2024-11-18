@@ -2,3 +2,11 @@
 create unique index IDX_GARANT_TARGET_UK_NAME on GARANT_TARGET (NAME) where DELETE_TS is null ^
 create unique index IDX_GARANT_TARGET_UK_CODE on GARANT_TARGET (CODE) where DELETE_TS is null ^
 -- end GARANT_TARGET
+-- begin GARANT_CREDIT
+alter table GARANT_CREDIT add constraint FK_GARANT_CREDIT_ON_CREDIT_TYPE foreign key (CREDIT_TYPE_ID) references GARANT_CREDIT_TYPE(ID)^
+alter table GARANT_CREDIT add constraint FK_GARANT_CREDIT_ON_BANK foreign key (BANK_ID) references DF_BANK(ID)^
+alter table GARANT_CREDIT add constraint FK_GARANT_CREDIT_ON_TARGET foreign key (TARGET_ID) references GARANT_TARGET(ID)^
+create index IDX_GARANT_CREDIT_ON_CREDIT_TYPE on GARANT_CREDIT (CREDIT_TYPE_ID)^
+create index IDX_GARANT_CREDIT_ON_BANK on GARANT_CREDIT (BANK_ID)^
+create index IDX_GARANT_CREDIT_ON_TARGET on GARANT_CREDIT (TARGET_ID)^
+-- end GARANT_CREDIT

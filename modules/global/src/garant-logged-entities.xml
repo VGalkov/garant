@@ -4,4 +4,5 @@
     <entity metaClass="garant$Target"/>
     <entity metaClass="garant$Address"/>
     <entity metaClass="garant$CreditType"/>
+    <entity metaClass="garant$Credit"/>
 </entities>
