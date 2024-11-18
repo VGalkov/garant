@@ -19,8 +19,8 @@
     <dialogMode height="600"
                 width="800"/>
     <layout expand="editActions" spacing="true">
-        <form id="form" dataContainer="targetDc">
-            <column width="350px">
+        <form id="form" dataContainer="targetDc" width="100%" captionPosition="TOP" height="AUTO">
+            <column width="450px">
                 <textField id="nameField" property="name"/>
                 <textField id="codeField" property="code"/>
             </column>
