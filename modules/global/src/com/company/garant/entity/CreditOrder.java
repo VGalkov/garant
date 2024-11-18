@@ -7,16 +7,18 @@
 package com.company.garant.entity;
 
 import com.haulmont.chile.core.annotations.NamePattern;
-import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.EmbeddedParameters;
+import com.haulmont.thesis.core.entity.Doc;
 import com.haulmont.thesis.core.entity.Individual;
 
 import javax.persistence.*;
 
+@DiscriminatorValue("427")
 @Table(name = "GARANT_CREDIT_ORDER")
 @Entity(name = "garant$CreditOrder")
 @NamePattern("%s %s|credit, loader")
-public class CreditOrder extends StandardEntity {
+@PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
+public class CreditOrder extends Doc {
     private static final long serialVersionUID = -5910365044496776192L;
 
     @ManyToOne(fetch = FetchType.LAZY)

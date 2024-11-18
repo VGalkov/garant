@@ -20,8 +20,5 @@
         <entity class="com.company.garant.entity.Credit">
             <include re=".*"/>
         </entity>
-        <entity class="com.company.garant.entity.CreditOrder">
-            <include re=".*"/>
-        </entity>
     </entities>
 </fts-config>

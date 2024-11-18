@@ -5,5 +5,4 @@
     <entity metaClass="garant$Address"/>
     <entity metaClass="garant$CreditType"/>
     <entity metaClass="garant$Credit"/>
-    <entity metaClass="garant$CreditOrder"/>
 </entities>
