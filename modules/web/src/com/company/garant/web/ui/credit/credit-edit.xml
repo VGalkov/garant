@@ -38,7 +38,7 @@
                     </actions>
                 </pickerField>
                 <dateField id="dateField" property="date"/>
-                <textField id="summField" property="summ"/>
+                <textField id="sumField" property="sum" datatype="double"/>
                 <pickerField id="targetField" property="target">
                     <actions>
                         <action id="lookup" type="picker_lookup"/>

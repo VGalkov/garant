@@ -11,7 +11,7 @@ create table GARANT_CREDIT (
     CREDIT_TYPE_ID uuid not null,
     BANK_ID uuid,
     DATE_ date,
-    SUMM double precision,
+    SUM double precision,
     TARGET_ID uuid not null,
     --
     primary key (ID)

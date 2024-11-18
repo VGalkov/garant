@@ -36,20 +36,20 @@ public class Credit extends StandardEntity {
     @Column(name = "DATE_")
     protected Date date;
 
-    @Column(name = "SUMM")
-    protected Double summ;
+    @Column(name = "SUM")
+    protected Double sum;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "TARGET_ID")
     protected Target target;
 
-    public Double getSumm() {
-        return summ;
+    public Double getSum() {
+        return sum;
     }
 
-    public void setSumm(Double summ) {
-        this.summ = summ;
+    public void setSum(Double sum) {
+        this.sum = sum;
     }
 
     public Date getDate() {

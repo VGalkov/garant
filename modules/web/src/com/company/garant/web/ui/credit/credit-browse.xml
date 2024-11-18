@@ -6,7 +6,6 @@
   -->
 
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
-        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
         caption="msg://creditBrowse.caption"
         focusComponent="creditsTable"
         messagesPack="com.company.garant.web.ui.credit">
@@ -46,7 +45,7 @@
                 <column id="creditType"/>
                 <column id="bank"/>
                 <column id="date"/>
-                <column id="summ"/>
+                <column id="sum"/>
                 <column id="target"/>
             </columns>
             <rowsCount/>
