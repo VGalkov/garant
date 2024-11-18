@@ -9,11 +9,10 @@ package com.company.garant.entity;
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
+import java.util.List;
 
 @Table(name = "GARANT_CREDIT_TYPE")
 @Entity(name = "garant$CreditType")
@@ -32,6 +31,17 @@ public class CreditType extends StandardEntity {
     @Lob
     @Column(name = "COMMENT_")
     protected String comment;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "creditType")
+    private Collection<Credit> creditCollection;
+
+    public Collection<Credit> getCreditCollection() {
+        return creditCollection;
+    }
+
+    public void setCreditCollection(Collection<Credit> creditCollection) {
+        this.creditCollection = creditCollection;
+    }
 
     public String getComment() {
         return comment;

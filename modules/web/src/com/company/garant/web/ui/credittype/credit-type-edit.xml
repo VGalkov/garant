@@ -10,25 +10,47 @@
         focusComponent="form"
         messagesPack="com.company.garant.web.ui.credittype">
     <data>
-        <instance id="creditTypeDc"
-                  class="com.company.garant.entity.CreditType">
-            <view extends="_local"/>
+        <instance id="creditTypeDc" class="com.company.garant.entity.CreditType">
+            <collection id="creditDc" property="creditCollection"/>
+            <view extends="_local">
+                <property name="creditCollection" view="_local">
+                    <property name="creditType" view="_local"/>
+                    <property name="target" view="_local"/>
+                    <property name="bank" view="_local"/>
+                </property>
+            </view>
+            >
             <loader/>
         </instance>
     </data>
-    <dialogMode height="600"
-                width="800"/>
-    <layout expand="editActions" spacing="true">
-        <form id="form" dataContainer="creditTypeDc" width="100%" captionPosition="TOP" height="AUTO">
-            <column width="450px">
-                <textField id="codeField" property="code"/>
-                <textField id="nameField" property="name"/>
-                <textArea id="commentField" property="comment" rows="5"/>
-            </column>
-        </form>
-        <hbox id="editActions" spacing="true">
-            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
-            <button id="closeBtn" action="windowClose"/>
-        </hbox>
+    <dialogMode height="600" width="800"/>
+    <layout expand="splitCatalogs" spacing="true">
+        <split id="splitCatalogs" orientation="horizontal"
+               minSplitPosition="30%" maxSplitPosition="70%" pos="30%" dockable="false">
+            <groupBox id="inventoryClassBox" spacing="true" height="100%" >
+                <form id="form" dataContainer="creditTypeDc" width="100%" captionPosition="TOP" height="AUTO" align="TOP_LEFT">
+                    <column width="450px">
+                        <textField id="codeField" property="code"/>
+                        <textField id="nameField" property="name"/>
+                        <textArea id="commentField" property="comment" rows="5"/>
+                        <hbox id="editActions" spacing="true" align="TOP_LEFT">
+                            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+                            <button id="closeBtn" action="windowClose"/>
+                        </hbox>
+                    </column>
+                </form>
+            </groupBox>
+            <groupBox id="creditsTableBox" spacing="true" height="100%">
+                <groupTable id="creditsTable" width="100%" responsive="true" dataContainer="creditDc" height="100%">
+                    <columns>
+                        <column id="bank"/>
+                        <column id="date"/>
+                        <column id="sum"/>
+                        <column id="target"/>
+                        <column id="creditType"/>
+                    </columns>
+                </groupTable>
+            </groupBox>
+        </split>
     </layout>
 </window>
