@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  ~ Copyright (c) 2024 LTD Haulmont Samara. All Rights Reserved.
+  ~ Haulmont Samara proprietary and confidential.
+  ~ Use is subject to license terms.
+  -->
+
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://creditTypeBrowse.caption"
+        focusComponent="creditTypesTable"
+        messagesPack="com.company.garant.web.ui.credittype">
+    <data readOnly="true">
+        <collection id="creditTypesDc"
+                    class="com.company.garant.entity.CreditType">
+            <view extends="_local"/>
+            <loader id="creditTypesDl">
+                <query>
+                    <![CDATA[select e from garant$CreditType e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="creditTypesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="creditTypesTable"
+                dataLoader="creditTypesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="creditTypesTable"
+                    width="100%"
+                    dataContainer="creditTypesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="code"/>
+                <column id="name"/>
+                <column id="comment"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="creditTypesTable.create"/>
+                <button id="editBtn" action="creditTypesTable.edit"/>
+                <button id="removeBtn" action="creditTypesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

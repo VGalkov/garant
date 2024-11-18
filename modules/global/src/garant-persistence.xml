@@ -7,5 +7,6 @@
 
         <class>com.company.garant.entity.Target</class>
         <class>com.company.garant.entity.Address</class>
+        <class>com.company.garant.entity.CreditType</class>
     </persistence-unit>
 </persistence>

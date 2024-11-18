@@ -14,5 +14,8 @@
         <entity class="com.company.garant.entity.Address">
             <include re=".*"/>
         </entity>
+        <entity class="com.company.garant.entity.CreditType">
+            <include re=".*"/>
+        </entity>
     </entities>
 </fts-config>

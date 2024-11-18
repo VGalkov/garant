@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  ~ Copyright (c) 2024 LTD Haulmont Samara. All Rights Reserved.
+  ~ Haulmont Samara proprietary and confidential.
+  ~ Use is subject to license terms.
+  -->
+
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://creditTypeEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.garant.web.ui.credittype">
+    <data>
+        <instance id="creditTypeDc"
+                  class="com.company.garant.entity.CreditType">
+            <view extends="_local"/>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="creditTypeDc">
+            <column width="350px">
+                <textField id="codeField" property="code"/>
+                <textField id="nameField" property="name"/>
+                <textArea id="commentField" property="comment" rows="5"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
