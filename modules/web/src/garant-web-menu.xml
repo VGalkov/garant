@@ -10,5 +10,6 @@
         <item screen="garant$Target.browse" caption="mainMsg://menu_config.garant$Target.browse"/>
         <item screen="garant$CreditType.browse" caption="mainMsg://menu_config.garant$CreditType.browse"/>
         <item screen="garant$Credit.browse" caption="mainMsg://menu_config.garant$Credit.browse"/>
+        <item screen="garant$CreditOrder.browse" caption="mainMsg://menu_config.garant$CreditOrder.browse"/>
     </menu>
 </menu-config>

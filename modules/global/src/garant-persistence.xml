@@ -9,5 +9,6 @@
         <class>com.company.garant.entity.Address</class>
         <class>com.company.garant.entity.CreditType</class>
         <class>com.company.garant.entity.Credit</class>
+        <class>com.company.garant.entity.CreditOrder</class>
     </persistence-unit>
 </persistence>
