@@ -49,6 +49,7 @@
                 <button id="createBtn" action="creditTypesTable.create"/>
                 <button id="editBtn" action="creditTypesTable.edit"/>
                 <button id="removeBtn" action="creditTypesTable.remove"/>
+                <button id="addSum" invoke="addNewSum" caption="msg://addSumCaption"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

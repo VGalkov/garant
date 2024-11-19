@@ -6,12 +6,15 @@
 
 package com.company.garant.web.ui.credit;
 
+import com.company.garant.service.ProjectService;
 import com.haulmont.cuba.core.global.Messages;
 import com.haulmont.cuba.gui.Dialogs;
 import com.haulmont.cuba.gui.components.DialogAction;
+import com.haulmont.cuba.gui.components.HasValue;
 import com.haulmont.cuba.gui.components.TextField;
 import com.haulmont.cuba.gui.screen.*;
 import com.company.garant.entity.Credit;
+import com.haulmont.thesis.core.entity.Bank;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @UiController("garant$Credit.edit")
@@ -20,12 +23,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 @LoadDataBeforeShow
 public class CreditEdit extends StandardEditor<Credit> {
     @Autowired
-    private TextField<Double> sumField;
+    protected TextField<Double> sumField;
     @Autowired
-    private Dialogs dialogs;
+    protected TextField<Double> bankCreditSum;
+    @Autowired
+    protected Dialogs dialogs;
     @Autowired
     protected Messages messages;
-
+    @Autowired
+    protected ProjectService projectService;
     @Subscribe
     public void onBeforeCommitChanges(BeforeCommitChangesEvent event) {
         if (sumField.getValue() == null || sumField.getValue() == 0) {
@@ -42,5 +48,14 @@ public class CreditEdit extends StandardEditor<Credit> {
                     .show();
         }
     }
+
+    @Subscribe("bankField")
+    public void onBankFieldValueChange(HasValue.ValueChangeEvent<Bank> event) {
+        if (event.getValue() != null) {
+            bankCreditSum.setValue(projectService.getBankCreditSum(event.getValue()));
+        } else bankCreditSum.setValue(0D);
+    }
+
+
 
 }

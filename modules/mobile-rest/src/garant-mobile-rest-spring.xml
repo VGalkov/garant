@@ -11,5 +11,14 @@
 
     <!-- Annotation-based beans -->
     <context:component-scan base-package="com.company.garant.mobile.rest"/>
+    <bean id="garant_proxyCreator"
+          class="com.haulmont.thesis.mobile.rest.sys.remoting.MobileRestAPIRemoteProxyBeanCreator">
+        <property name="serverSelector" ref="cuba_ServerSelector"/>
+        <property name="remoteServices">
+            <map>
+                <entry key="garant_ProjectService" value="com.company.garant.service.ProjectService"/>
+            </map>
+        </property>
+    </bean>
 
 </beans>

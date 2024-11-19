@@ -24,6 +24,7 @@
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="creditDc" width="100%" captionPosition="TOP" height="AUTO">
             <column width="450px">
+                <textField id="bankCreditSum" datatype="double" editable="false" caption="msg://bank"/>
                 <pickerField id="creditTypeField" property="creditType">
                     <actions>
                         <action id="lookup" type="picker_lookup"/>
