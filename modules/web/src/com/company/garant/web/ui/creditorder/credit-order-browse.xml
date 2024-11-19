@@ -6,12 +6,13 @@
   -->
 
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:thesis="http://schemas.haulmont.com/thesis/thesis-window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
         caption="msg://creditOrderBrowse.caption"
         focusComponent="creditOrdersTable"
         messagesPack="com.company.garant.web.ui.creditorder">
     <data readOnly="true">
-        <collection id="creditOrdersDc"
-                    class="com.company.garant.entity.CreditOrder">
+        <collection id="creditOrdersDc" class="com.company.garant.entity.CreditOrder">
             <view extends="_local">
                 <property name="credit" view="_minimal"/>
                 <property name="loader" view="_minimal"/>
@@ -26,16 +27,10 @@
     </data>
     <dialogMode height="600" width="800"/>
     <layout expand="creditOrdersTable" spacing="true">
-        <!-- TODO сделать -->
-        <filter id="filter" applyTo="creditOrdersTable" dataLoader="creditOrdersDl" applyImmediately="true"
-                width="100%">
+        <filter id="filter" applyTo="creditOrdersTable" dataLoader="creditOrdersDl">
             <properties include=".*"/>
-            <custom name="bankFilter" caption="msg://bank"
-                    paramClass="com.haulmont.thesis.core.entity.Bank">
-                e.credit.bank like ?
-            </custom>
         </filter>
-        <groupTable id="creditOrdersTable" width="100%" dataContainer="creditOrdersDc">
+        <table id="creditOrdersTable" width="100%" dataContainer="creditOrdersDc">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
@@ -56,7 +51,7 @@
                 <button id="editBtn" action="creditOrdersTable.edit"/>
                 <button id="removeBtn" action="creditOrdersTable.remove"/>
             </buttonsPanel>
-        </groupTable>
+        </table>
         <hbox id="lookupActions" spacing="true" visible="false">
             <button action="lookupSelectAction"/>
             <button action="lookupCancelAction"/>
