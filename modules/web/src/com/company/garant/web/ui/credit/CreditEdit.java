@@ -14,8 +14,11 @@ import com.haulmont.cuba.gui.components.HasValue;
 import com.haulmont.cuba.gui.components.TextField;
 import com.haulmont.cuba.gui.screen.*;
 import com.company.garant.entity.Credit;
+import com.haulmont.cuba.gui.util.OperationResult;
 import com.haulmont.thesis.core.entity.Bank;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 @UiController("garant$Credit.edit")
 @UiDescriptor("credit-edit.xml")
@@ -55,7 +58,6 @@ public class CreditEdit extends StandardEditor<Credit> {
             bankCreditSum.setValue(projectService.getBankCreditSum(event.getValue()));
         } else bankCreditSum.setValue(0D);
     }
-
 
 
 }

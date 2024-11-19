@@ -15,7 +15,6 @@ import javax.validation.constraints.NotNull;
 public interface ProjectService {
     String NAME = "garant_ProjectService";
 
-    Integer getCreditOrdersNumber(@NotNull CreditOrder order);
     Integer getBankCreditNumber(@NotNull Bank bank);
     Double getBankCreditSum(@NotNull Bank bank);
 
