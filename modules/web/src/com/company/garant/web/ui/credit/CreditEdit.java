@@ -12,13 +12,18 @@ import com.haulmont.cuba.gui.Dialogs;
 import com.haulmont.cuba.gui.components.DialogAction;
 import com.haulmont.cuba.gui.components.HasValue;
 import com.haulmont.cuba.gui.components.TextField;
+import com.haulmont.cuba.gui.components.Window;
+import com.haulmont.cuba.gui.model.DataContext;
 import com.haulmont.cuba.gui.screen.*;
 import com.company.garant.entity.Credit;
 import com.haulmont.cuba.gui.util.OperationResult;
 import com.haulmont.thesis.core.entity.Bank;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
+
+import static com.haulmont.cuba.gui.components.Window.COMMIT_ACTION_ID;
 
 @UiController("garant$Credit.edit")
 @UiDescriptor("credit-edit.xml")
@@ -35,20 +40,19 @@ public class CreditEdit extends StandardEditor<Credit> {
     protected Messages messages;
     @Autowired
     protected ProjectService projectService;
+
     @Subscribe
-    public void onBeforeCommitChanges(BeforeCommitChangesEvent event) {
-        if (sumField.getValue() == null || sumField.getValue() == 0) {
+    private void onBeforeClose(Screen.BeforeCloseEvent event) {
+        if (new StandardCloseAction("commit").equals(event.getCloseAction()) && sumField.getValue() == null) {
             dialogs.createOptionDialog()
                     .withCaption(messages.getMessage(this.getClass(), "caption1CreditEdit"))
                     .withMessage(messages.getMessage(this.getClass(), "message1CreditEdit"))
                     .withActions(
-                            new DialogAction(DialogAction.Type.YES),
-                            new DialogAction(DialogAction.Type.NO).withHandler(e -> {
-                                event.preventCommit();
-                                event.resume();
-                            })
+                            new DialogAction(DialogAction.Type.YES).withHandler(e -> close(StandardOutcome.CLOSE)),
+                            new DialogAction(DialogAction.Type.NO)
                     )
                     .show();
+            event.preventWindowClose();
         }
     }
 
