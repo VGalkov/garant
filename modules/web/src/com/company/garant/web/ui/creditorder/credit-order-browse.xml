@@ -15,7 +15,6 @@
         <collection id="creditOrdersDc" class="com.company.garant.entity.CreditOrder">
             <view extends="_local">
                 <property name="credit" view="_minimal"/>
-                <property name="loader" view="_minimal"/>
                 <property name="address" view="_minimal"/>
             </view>
             <loader id="creditOrdersDl">
@@ -38,7 +37,6 @@
             </actions>
             <columns>
                 <column id="credit"/>
-                <column id="loader"/>
                 <column id="workingType"/>
                 <column id="address.city"/>
                 <column id="address.house"/>

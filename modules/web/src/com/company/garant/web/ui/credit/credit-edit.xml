@@ -10,18 +10,17 @@
         focusComponent="form"
         messagesPack="com.company.garant.web.ui.credit">
     <data>
-        <instance id="creditDc"
-                  class="com.company.garant.entity.Credit">
+        <instance id="creditDc" class="com.company.garant.entity.Credit">
             <view extends="_local">
                 <property name="creditType" view="_minimal"/>
                 <property name="bank" view="_minimal"/>
                 <property name="target" view="_minimal"/>
+                <property name="manager" view="_minimal"/>
             </view>
             <loader/>
         </instance>
     </data>
-    <dialogMode height="600"
-                width="800"/>
+    <dialogMode height="600" width="800"/>
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="creditDc" width="100%" captionPosition="TOP" height="AUTO">
             <column width="450px">
@@ -40,6 +39,12 @@
                 <dateField id="dateField" property="date"/>
                 <textField id="sumField" property="sum" datatype="double"/>
                 <pickerField id="targetField" property="target">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+                <pickerField id="userField" property="manager">
                     <actions>
                         <action id="lookup" type="picker_lookup"/>
                         <action id="clear" type="picker_clear"/>

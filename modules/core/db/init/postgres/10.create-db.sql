@@ -10,6 +10,7 @@ create table GARANT_CREDIT (
     DELETED_BY varchar(50),
     --
     CREDIT_TYPE_ID uuid not null,
+    MANAGER_ID uuid,
     BANK_ID uuid,
     DATE_ date,
     SUM double precision,
@@ -62,7 +63,7 @@ create table GARANT_CREDIT_ORDER (
     ADDRESS_STREET varchar(255),
     --
     CREDIT_ID uuid,
-    LOADER_ID uuid,
+    CONTRACTOR_ID uuid,
     WORKING_TYPE integer,
     --
     primary key (ID)

@@ -8,15 +8,15 @@ package com.company.garant.entity;
 
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.annotation.EmbeddedParameters;
+import com.haulmont.thesis.core.entity.Contractor;
 import com.haulmont.thesis.core.entity.Doc;
-import com.haulmont.thesis.core.entity.Individual;
 
 import javax.persistence.*;
 
 @DiscriminatorValue("427")
 @Table(name = "GARANT_CREDIT_ORDER")
 @Entity(name = "garant$CreditOrder")
-@NamePattern("%s %s|credit, loader")
+@NamePattern("%s|credit")
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class CreditOrder extends Doc {
     private static final long serialVersionUID = -5910365044496776192L;
@@ -26,8 +26,8 @@ public class CreditOrder extends Doc {
     protected Credit credit;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "LOADER_ID")
-    protected Individual loader;
+    @JoinColumn(name = "CONTRACTOR_ID")
+    protected Contractor contractor;
 
     @Column(name = "WORKING_TYPE")
     protected Integer workingType;
@@ -57,19 +57,21 @@ public class CreditOrder extends Doc {
         this.workingType = workingType == null ? null : workingType.getId();
     }
 
-    public Individual getLoader() {
-        return loader;
-    }
-
-    public void setLoader(Individual loader) {
-        this.loader = loader;
-    }
-
     public Credit getCredit() {
         return credit;
     }
 
     public void setCredit(Credit credit) {
         this.credit = credit;
+    }
+
+    @Override
+    public Contractor getContractor() {
+        return contractor;
+    }
+
+    @Override
+    public void setContractor(Contractor contractor) {
+        this.contractor = contractor;
     }
 }

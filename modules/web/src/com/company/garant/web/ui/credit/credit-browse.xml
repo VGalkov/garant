@@ -18,6 +18,7 @@
                 <property name="creditType" view="_minimal"/>
                 <property name="bank" view="_minimal"/>
                 <property name="target" view="_minimal"/>
+                <property name="manager" view="_minimal"/>
             </view>
             <loader id="creditsDl">
                 <query>
@@ -43,6 +44,7 @@
                 <column id="date"/>
                 <column id="sum"/>
                 <column id="target"/>
+                <column id="manager"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

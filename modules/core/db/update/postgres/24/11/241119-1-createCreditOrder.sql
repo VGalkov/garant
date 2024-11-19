@@ -6,7 +6,7 @@ create table GARANT_CREDIT_ORDER (
     ADDRESS_STREET varchar(255),
     --
     CREDIT_ID uuid,
-    LOADER_ID uuid,
+    CONTRACTOR_ID uuid,
     WORKING_TYPE integer,
     --
     primary key (ID)

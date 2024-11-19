@@ -10,16 +10,15 @@
         focusComponent="form1"
         messagesPack="com.company.garant.web.ui.creditorder">
     <data>
-        <instance id="creditOrderDc"
-                  class="com.company.garant.entity.CreditOrder">
+        <instance id="creditOrderDc" class="com.company.garant.entity.CreditOrder">
             <view extends="_local">
                 <property name="credit" view="_minimal">
                     <property name="bank" view="_minimal">
                         <property name="name"/>
                     </property>
                 </property>
-                <property name="loader" view="_minimal"/>
                 <property name="address" view="_minimal"/>
+                <property name="contractor" view="_minimal"/>
             </view>
             <loader/>
         </instance>
@@ -37,13 +36,13 @@
                                 <action id="clear" type="picker_clear"/>
                             </actions>
                         </pickerField>
-                        <pickerField id="loaderField" property="loader">
+                        <lookupField id="workingTypeField" property="workingType"/>
+                        <suggestionPickerField id="contractorField" property="contractor">
                             <actions>
                                 <action id="lookup" type="picker_lookup"/>
                                 <action id="clear" type="picker_clear"/>
                             </actions>
-                        </pickerField>
-                        <lookupField id="workingTypeField" property="workingType"/>
+                        </suggestionPickerField>
                     </column>
                 </form>
             </tab>
@@ -54,7 +53,6 @@
                     <textField id="addressStreetField" property="address.street" width="100%"/>
                 </form>
             </tab>
-
         </tabSheet>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
