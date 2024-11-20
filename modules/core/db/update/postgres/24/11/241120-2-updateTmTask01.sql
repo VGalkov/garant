@@ -1,0 +1,2 @@
+alter table TM_TASK add constraint FK_TM_TASK_ON_CREDIT_ORDER foreign key (CREDIT_ORDER_ID) references GARANT_CREDIT_ORDER(ID);
+create index IDX_TM_TASK_ON_CREDIT_ORDER on TM_TASK (CREDIT_ORDER_ID);

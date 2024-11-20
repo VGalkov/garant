@@ -69,3 +69,6 @@ create table GARANT_CREDIT_ORDER (
     primary key (ID)
 )^
 -- end GARANT_CREDIT_ORDER
+-- begin TM_TASK
+alter table TM_TASK add column CREDIT_ORDER_ID uuid ^
+-- end TM_TASK
