@@ -1,0 +1,52 @@
+<!--
+  ~ Copyright (c) 2019 LTD Haulmont Samara. All Rights Reserved.
+  ~ Haulmont Samara proprietary and confidential.
+  ~ Use is subject to license terms.
+  -->
+
+<window
+        xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="com.company.garant.web.ui.extcontractor.ExtContractorLookup"
+        messagesPack="com.haulmont.thesis.web.ui.contractor"
+        extends="com/haulmont/thesis/web/ui/contractor/contractor-lookup.xml"
+        lookupComponent="tabsheet"
+        caption="msg://lookupContractor"
+>
+
+    <dsContext>
+        <collectionDatasource id="extContractorDc" class="com.company.garant.entity.ExtContractor" view="_local">
+            <query>
+                <![CDATA[select distinct e from garant$ExtContractor e order by e.name]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+
+    <layout >
+        <tabSheet id="tabsheet">
+            <tab id="extContractorTab" caption="msg://extContractorTab" margin="true" lazy="true" expand="extContractorVbox">
+                <vbox id="extContractorVbox" expand="extContractorTable">
+                    <filter id="genericFilterContractor" datasource="extContractorDc" stylename="edit-area">
+                        <properties include=".*"
+                                    exclude="(deleteTs)|(deletedBy)|(updateTs)|(updatedBy)|(id)|(createTs)"/>
+                    </filter>
+                    <table id="extContractorTable" editable="false" width="100%">
+                        <!-- <buttonsPanel id="extContractorPanel" align="MIDDLE_LEFT">
+                            <button action="extContractorTable.create"/>
+                            <thesis:separator/>
+                            <button action="extContractorTable.edit"/>
+                            <button action="extContractorTable.remove"/>
+                        </buttonsPanel> -->
+                        <actions>
+                        </actions>
+                        <columns>
+                            <column id="name" caption="msg://name"/>
+                            <column id="inn" caption="msg://inn"/>
+                        </columns>
+                        <rows datasource="extContractorDc"/>
+                        <rowsCount/>
+                    </table>
+                </vbox>
+            </tab>
+        </tabSheet>
+    </layout>
+</window>

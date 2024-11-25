@@ -11,5 +11,6 @@
         <class>com.company.garant.entity.Credit</class>
         <class>com.company.garant.entity.CreditOrder</class>
         <class>com.company.garant.entity.ExtTask</class>
+        <class>com.company.garant.entity.ExtContractor</class>
     </persistence-unit>
 </persistence>

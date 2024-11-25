@@ -3,4 +3,5 @@
     <include file="/garant-screens.xml"/>
     <screen id="tm$Task.browse" template="com/company/garant/web/ui/exttask/ext-task-browse.xml"/>
     <screen id="tm$Task.edit" template="com/company/garant/web/ui/exttask/ext-task-edit.xml"/>
+    <screen id="df$Contractor.lookup" template="/com/company/garant/web/ui/extcontractor/ext-contractor-lookup.xml"/>
 </screen-config>

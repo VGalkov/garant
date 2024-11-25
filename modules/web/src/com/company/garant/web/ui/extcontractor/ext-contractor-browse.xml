@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  ~ Copyright (c) 2024 LTD Haulmont Samara. All Rights Reserved.
+  ~ Haulmont Samara proprietary and confidential.
+  ~ Use is subject to license terms.
+  -->
+
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://extContractorBrowse.caption"
+        focusComponent="extContractorsTable"
+        messagesPack="com.company.garant.web.ui.extcontractor">
+    <data readOnly="true">
+        <collection id="extContractorsDc"
+                    class="com.company.garant.entity.ExtContractor">
+            <view extends="_local"/>
+            <loader id="extContractorsDl">
+                <query>
+                    <![CDATA[select e from garant$ExtContractor e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="extContractorsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="extContractorsTable"
+                dataLoader="extContractorsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="extContractorsTable"
+                    width="100%"
+                    dataContainer="extContractorsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="hasAttachments"/>
+                <column id="inn"/>
+                <column id="postalAddress"/>
+                <column id="legalAddress"/>
+                <column id="phone"/>
+                <column id="fax"/>
+                <column id="email"/>
+                <column id="comment"/>
+                <column id="website"/>
+                <column id="nonResident"/>
+                <column id="supplier"/>
+                <column id="customer"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="extContractorsTable.create"/>
+                <button id="editBtn" action="extContractorsTable.edit"/>
+                <button id="removeBtn" action="extContractorsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

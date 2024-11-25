@@ -23,5 +23,8 @@
         <entity class="com.company.garant.entity.ExtTask">
             <include re=".*"/>
         </entity>
+        <entity class="com.company.garant.entity.ExtContractor">
+            <include re=".*"/>
+        </entity>
     </entities>
 </fts-config>

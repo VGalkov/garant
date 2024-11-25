@@ -6,4 +6,5 @@
     <entity metaClass="garant$CreditType"/>
     <entity metaClass="garant$Credit"/>
     <entity metaClass="garant$ExtTask"/>
+    <entity metaClass="garant$ExtContractor"/>
 </entities>

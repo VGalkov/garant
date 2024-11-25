@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  ~ Copyright (c) 2024 LTD Haulmont Samara. All Rights Reserved.
+  ~ Haulmont Samara proprietary and confidential.
+  ~ Use is subject to license terms.
+  -->
+
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://extContractorEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.garant.web.ui.extcontractor">
+    <data>
+        <instance id="extContractorDc"
+                  class="com.company.garant.entity.ExtContractor">
+            <view extends="_local"/>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="scrollBox" spacing="true">
+        <scrollBox id="scrollBox" spacing="true">
+            <form id="form" dataContainer="extContractorDc">
+                <column width="350px">
+                    <textField id="nameField" property="name"/>
+                    <checkBox id="hasAttachmentsField" property="hasAttachments"/>
+                    <textField id="innField" property="inn"/>
+                    <textField id="postalAddressField" property="postalAddress"/>
+                    <textField id="legalAddressField" property="legalAddress"/>
+                    <textField id="phoneField" property="phone"/>
+                    <textField id="faxField" property="fax"/>
+                    <textField id="emailField" property="email"/>
+                    <textField id="commentField" property="comment"/>
+                    <textField id="websiteField" property="website"/>
+                    <checkBox id="nonResidentField" property="nonResident"/>
+                    <checkBox id="supplierField" property="supplier"/>
+                    <checkBox id="customerField" property="customer"/>
+                </column>
+            </form>
+        </scrollBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

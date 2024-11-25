@@ -6,6 +6,8 @@
   -->
 
 <menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <item screen="garant$ExtContractor.browse" caption="mainMsg://menu_config.garant$ExtContractor.browse"
+          insertAfter="df$Individual.browse"/>
     <menu id="application" insertBefore="administration">
         <item screen="garant$Target.browse" caption="mainMsg://menu_config.garant$Target.browse"/>
         <item screen="garant$CreditType.browse" caption="mainMsg://menu_config.garant$CreditType.browse"/>
