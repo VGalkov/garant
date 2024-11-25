@@ -1,0 +1,100 @@
+{
+    "metaClass":"ts$Report",
+    "id":"be8d167b-79a8-cdfa-7dff-94d82c16586b",
+    "roles":[],
+    "defaultTemplate":
+    {
+        "metaClass":"report$ReportTemplate",
+        "id":"33cb49c4-1039-66cf-fb66-a95da82f2c3d",
+        "code":"DEFAULT",
+        "customDefinedBy":"100",
+        "custom":"false",
+        "version":"7",
+        "outputNamePattern":"Отчёт для сущности \"CreditApplication\".docx",
+        "reportOutputType":"20",
+        "groovy":"false",
+        "customDefinition":"",
+        "report":{"metaClass":"ts$Report", "id":"be8d167b-79a8-cdfa-7dff-94d82c16586b"}  ,
+        "name":"JPQL - Заявка на кредит.docx","alterable":"false"},
+        "bands":
+        [
+            {
+                "metaClass":"report$BandDefinition",
+                "id":"9d657f11-f925-6475-be9e-a9b495dd1686",
+                "orientation":"",
+                "childrenBandDefinitions":
+                [
+                    {
+                        "metaClass":"report$BandDefinition",
+                        "id":"5e384f05-76db-342e-160a-0a76f600d3eb",
+                        "orientation":"0",
+                        "childrenBandDefinitions":[],
+                        "name":"CreditApplication",
+                        "parentBandDefinition":  { "metaClass":"report$BandDefinition","id":"9d657f11-f925-6475-be9e-a9b495dd1686"},
+                        "report":{"metaClass":"ts$Report","id":"be8d167b-79a8-cdfa-7dff-94d82c16586b"},
+                        "dataSets":
+                        [
+                            {
+                                "metaClass":"report$DataSet",
+                                "id":"80482da4-4812-ddef-8cac-9c9194a7c2b1",
+                                "entityParamName":"entity",
+                                "type":"20",
+                                "jsonSourceType":"10",
+                                "name":"dataSet",
+                                "useExistingView":"false",
+                                "bandDefinition":{"metaClass":"report$BandDefinition",  "id":"5e384f05-76db-342e-160a-0a76f600d3eb"},
+                                "text":"select c from garant$CreditApplication c","view":"{\"entityClass\":\"garant$CreditApplication\",\"name\":\"\",\"properties\":{\"number\":{\"name\":\"number\",\"fetchMode\":\"AUTO\"},\"theme\":{\"name\":\"theme\",\"fetchMode\":\"AUTO\"},\"date\":{\"name\":\"date\",\"fetchMode\":\"AUTO\"},\"hasAttachments\":{\"name\":\"hasAttachments\",\"fetchMode\":\"AUTO\"}},\"loadPartialEntities\":false}"}],
+                                "position":"0"
+                    },
+
+                                {"metaClass":"report$BandDefinition","id":"2748ea55-38f2-a662-45b4-536ffa9acca5","orientation":"0","childrenBandDefinitions":[],
+                                "name":"Attachments",
+                                "parentBandDefinition":{"metaClass":"report$BandDefinition","id":"9d657f11-f925-6475-be9e-a9b495dd1686"},
+                                "report":{"metaClass":"ts$Report","id":"be8d167b-79a8-cdfa-7dff-94d82c16586b"},
+                                "dataSets":[{"metaClass":"report$DataSet","id":"30e3481f-0f9c-4e0c-276d-1acc7a9a5904","type":"20","jsonSourceType":"10","name":"Attachments","useExistingView":"false","bandDefinition":{"metaClass":"report$BandDefinition","id":"2748ea55-38f2-a662-45b4-536ffa9acca5"},"text":"select a from wf$CardAttachment a where a.card.id \u003d ${entity}\n","view":"null"}],
+                                "position":"1"
+                                 }
+                ],
+
+                "name":"Root",
+                "report":{"metaClass":"ts$Report","id":"be8d167b-79a8-cdfa-7dff-94d82c16586b"},
+                "dataSets":[],
+                "position":"0"
+            },
+
+            {"metaClass":"report$BandDefinition","id":"5e384f05-76db-342e-160a-0a76f600d3eb"},
+            {"metaClass":"report$BandDefinition","id":"2748ea55-38f2-a662-45b4-536ffa9acca5"}
+        ],
+
+
+                                "inputParameters":[{"metaClass":"report$ReportInputParameter","id":"7f04c221-4348-c1e4-5fef-74c0b0bd1067","lookup":"false","entityMetaClass":"garant$CreditApplication","predefinedTransformation":"","type":"30","required":"true","validationOn":"false","defaultDateIsCurrent":"false","report":{"metaClass":"ts$Report","id":"be8d167b-79a8-cdfa-7dff-94d82c16586b"},"name":"CreditApplication","alias":"entity","position":"0"}],
+
+                                "validationOn":"false",
+                                "reportType":"10",
+                                "reportScreens":[
+                                {
+                                    "metaClass":"report$ReportScreen",
+                                    "id":"b3937b04-2f4b-ec55-6a4a-d227f0c81e15",
+                                    "screenId":
+                                    "garant$CreditApplication.browse",
+                                    "report":{"metaClass":"ts$Report","id":"be8d167b-79a8-cdfa-7dff-94d82c16586b"}
+                                },
+
+                                {
+                                    "metaClass":"report$ReportScreen",
+                                    "id":"bf921e1a-6570-3ed3-af3b-ee479bc1e773",
+                                    "screenId":"garant$CreditApplication.edit",
+                                    "report":{"metaClass":"ts$Report","id":"be8d167b-79a8-cdfa-7dff-94d82c16586b"}
+                                }],
+
+                                "screensIdx":",garant$CreditApplication.browse,garant$CreditApplication.edit,",
+                                "group":{"metaClass":"report$ReportGroup","id":"4e083530-0b9c-11e1-9b41-6bdaa41bff94","localeNames":"en\u003dGeneral\nru\u003dОбщие","code":"ReportGroup.default","title":"General","version":"0"},
+                                "inputEntityTypesIdx":",garant$CreditApplication,",
+                                "valuesFormats":[{"metaClass":"report$ReportValueFormat","id":"210c9489-61c2-076b-ac8d-a76b7ba38d74","formatString":"dd.MM.yyyy","valueName":"CreditApplication.date","groovyScript":"false","report":{"metaClass":"ts$Report","id":"be8d167b-79a8-cdfa-7dff-94d82c16586b"}}],
+
+                                "templates":[{"metaClass":"report$ReportTemplate","id":"33cb49c4-1039-66cf-fb66-a95da82f2c3d"}],
+                                "version":"34",
+                                "system":"false",
+                                "name":"JPQL Отчёт для сущности \"CreditApplication\"",
+                                "overwriteByInit":"true"
+}

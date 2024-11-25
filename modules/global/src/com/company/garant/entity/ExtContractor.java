@@ -17,7 +17,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Table(name = "GARANT_EXT_CONTRACTOR")
-@DiscriminatorValue("E")
+@DiscriminatorValue("J")
 @Entity(name = "garant$ExtContractor")
 @PrimaryKeyJoinColumn(name = "CONTRACTOR_ID", referencedColumnName = "ID")
 @NamePattern("%s|name")

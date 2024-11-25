@@ -19,8 +19,10 @@
                 </property>
                 <property name="address" view="_minimal"/>
                 <property name="contractor" view="_minimal"/>
+                <property name="attachments" view="_local"/>
             </view>
             <loader/>
+            <collection id="attachmentsDs" property="attachments"/>
         </instance>
     </data>
     <dialogMode height="600"  width="800"/>
@@ -52,6 +54,14 @@
                     <textField id="addressHouseField" property="address.house" width="100%"/>
                     <textField id="addressStreetField" property="address.street" width="100%"/>
                 </form>
+            </tab>
+            <tab id="attachmentsTab" caption="msg://attachments">
+                <groupBox id="attachmentsTabGroupBox" stylename="edit-area"
+                          height="100%" width="100%" expand="atdrop">
+                    <hbox id="atdrop" width="100%" margin="false,true,false,false">
+                        <frame screen="cardAttachmentsFrame" id="cardAttachmentsFrame" height="100%" />
+                    </hbox>
+                </groupBox>
             </tab>
         </tabSheet>
         <hbox id="editActions" spacing="true">
