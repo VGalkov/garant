@@ -11,15 +11,7 @@
         messagesPack="com.company.garant.web.ui.creditorder">
     <data>
         <instance id="creditOrderDc" class="com.company.garant.entity.CreditOrder">
-            <view extends="_local">
-                <property name="credit" view="_minimal">
-                    <property name="bank" view="_minimal">
-                        <property name="name"/>
-                    </property>
-                </property>
-                <property name="address" view="_minimal"/>
-                <property name="contractor" view="_minimal"/>
-            </view>
+            <view extends="edit"/>
             <loader/>
         </instance>
     </data>

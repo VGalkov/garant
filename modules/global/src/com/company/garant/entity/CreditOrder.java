@@ -9,7 +9,7 @@ package com.company.garant.entity;
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.annotation.EmbeddedParameters;
 import com.haulmont.thesis.core.entity.Contractor;
-import com.haulmont.thesis.core.entity.Doc;
+import com.haulmont.thesis.core.entity.SimpleDoc;
 
 import javax.persistence.*;
 
@@ -18,7 +18,7 @@ import javax.persistence.*;
 @Entity(name = "garant$CreditOrder")
 @NamePattern("%s|credit")
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-public class CreditOrder extends Doc {
+public class CreditOrder extends SimpleDoc {
     private static final long serialVersionUID = -5910365044496776192L;
 
     @ManyToOne(fetch = FetchType.LAZY)

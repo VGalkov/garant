@@ -47,4 +47,19 @@
         <property name="createTs"/>
         <property name="cardAdditionalInfo" view="_local"/>
     </view>
+    <view entity="garant$CreditOrder" name="edit" extends="_local">
+        <property name="credit" view="_local">
+            <property name="bank" view="edit"/>
+            <property name="creditType" view="_local"/>
+        </property>
+        <property name="address" view="_minimal"/>
+        <property name="contractor" view="_minimal"/>
+        <property name="docKind" view="_local"/>
+        <property name="attachments" view="_local"/>
+    </view>
+    <view entity="garant$Credit" name="edit" extends="_local">
+        <property name="bank" view="edit"/>
+        <property name="creditType" view="_local"/>
+    </view>
+    <view entity="df$Contractor" name="edit" extends="_local"/>
 </views>

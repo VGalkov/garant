@@ -1,7 +1,3 @@
--- begin update discriminator for ExtTask
-update WF_CARD set CARD_TYPE = '2000' where CARD_TYPE = '20' ^
--- end update discriminator for ExtTask
-
 INSERT INTO ts_card_type (id,create_ts,created_by,"name",discriminator,doc_kind_id,doc_template_id,fields_xml) VALUES
 	 ('bf459165-6647-69d9-766d-9c514218e562'::uuid,'2024-11-26 09:22:00.301','admin','garant$CreditOrder',427,NULL,NULL,'<?xml version="1.0" encoding="UTF-8"?>
 
@@ -91,6 +87,3 @@ INSERT INTO df_doc_kind (create_ts,created_by,"version",update_ts,updated_by,del
 
 update ts_card_type set doc_kind_id = '7922ad3a-b5f8-2f4c-052d-31b80dca4d16' where id='bf459165-6647-69d9-766d-9c514218e562';
 ^
-
-
-
