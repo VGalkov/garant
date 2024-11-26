@@ -16,6 +16,7 @@
         <property name="remoteServices">
             <map>
                 <entry key="garant_ProjectService" value="com.company.garant.service.ProjectService"/>
+                <entry key="garant_CreditOrderStatisticsService" value="com.company.garant.service.CreditOrderStatisticsService"/>
             </map>
         </property>
     </bean>
