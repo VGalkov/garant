@@ -11,11 +11,44 @@
         extends="com/haulmont/thesis/web/ui/simpledoc/simple-doc-edit.xml"
         messagesPack="com.company.garant.web.ui.creditorder">
     <dsContext>
-        <datasource id="cardDs" class="com.company.garant.entity.CreditOrder" view="edit">
+        <datasource id="cardDs" class="com.company.garant.entity.CreditOrder" view="edit" loadDynamicAttributes="true">
             <collectionDatasource id="cardProcDs" property="procs"/>
             <collectionDatasource id="cardRolesDs" property="roles"/>
             <collectionDatasource id="cardProjectsDs" property="projects"/>
         </datasource>
     </dsContext>
-    <layout/>
+    <layout>
+        <hbox id="mainPane">
+            <tabSheet id="tabsheet">
+                <tab id="mainTab">
+                    <form id="form1" width="AUTO" captionPosition="TOP" height="AUTO">
+                        <textField id="bankLabel" property="credit.bank" datasource="cardDs"
+                                   enable="false"/>
+                        <pickerField id="creditField" property="credit" datasource="cardDs">
+                            <actions>
+                                <action id="lookup" type="picker_lookup"/>
+                                <action id="clear" type="picker_clear"/>
+                            </actions>
+                        </pickerField>
+                        <lookupField id="workingTypeField" property="workingType" datasource="cardDs"/>
+                        <suggestionPickerField id="contractorField" property="contractor"
+                                               datasource="cardDs">
+                            <actions>
+                                <action id="lookup" type="picker_lookup"/>
+                                <action id="clear" type="picker_clear"/>
+                            </actions>
+                        </suggestionPickerField>
+                    </form>
+                    <groupBox id="docInfoGroupBox"/>
+                </tab>
+                <tab id="addressTab" caption="msg://address">
+                    <form id="form2" width="450px" captionPosition="TOP" height="AUTO">
+                        <textField id="addressCityField" property="address.city" width="100%" datasource="cardDs"/>
+                        <textField id="addressHouseField" property="address.house" width="100%" datasource="cardDs"/>
+                        <textField id="addressStreetField" property="address.street" width="100%" datasource="cardDs"/>
+                    </form>
+                </tab>
+            </tabSheet>
+        </hbox>
+    </layout>
 </window>

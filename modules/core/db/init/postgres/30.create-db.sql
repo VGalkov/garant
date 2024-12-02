@@ -63,7 +63,9 @@ insert into WF_DEFAULT_PROC_ACTOR (ID, CREATE_TS, CREATED_BY, version, PROC_ROLE
 values (newid(), now(), 'system', 1,
 	(select id from wf_proc_role wpr where wpr.code = 'Сотрудник Служба безопасности' ), true, 'garant_SbActorStrategy', '10');
 ^
-
+update WF_PROC set code='OnlineCreditOrderProcess', card_types =',garant$CreditOrder,', update_ts=now(), updated_by='system'
+where name = 'Согласование и выдача кредита'
+^
 
 
 
