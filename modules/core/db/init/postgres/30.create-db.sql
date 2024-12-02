@@ -10,7 +10,7 @@ insert into sec_role(id, create_ts, created_by, version, name, loc_name,descript
 
 
 insert into sec_role(id, create_ts, created_by, version, name, loc_name,description, role_type, is_default_role, dtype) values
-(newId(), now(), 'system', 1,'securityDepartment', 'Служба безопасности"', 'Служба безопасности', 0, false, '10');
+(newId(), now(), 'system', 1,'securityDepartment', 'Служба безопасности', 'Служба безопасности', 0, false, '10');
 
 insert into sec_role(id, create_ts, created_by, version, name, loc_name, description, role_type, is_default_role, dtype) values
 (newId(), now(), 'system', 1,'legalDepartment', 'Юридический отдел', 'Юридический отдел', 0, false, '10');
@@ -47,6 +47,22 @@ values (newid(), now(), 'system', 1, now(), null, null, null,
 60,'Реструктуризация', '');
 ^
 
+insert into WF_DEFAULT_PROC_ACTOR (ID, CREATE_TS, CREATED_BY, version, PROC_ROLE_ID, NOTIFY_BY_EMAIL, STRATEGY_ID, DTYPE)
+values (newid(), now(), 'system', 1,
+	(select id from wf_proc_role wpr where wpr.code = 'Оператор' ), true, 'garant_OperatorActorStrategy', '10');
+^
+insert into WF_DEFAULT_PROC_ACTOR (ID, CREATE_TS, CREATED_BY, version, PROC_ROLE_ID, NOTIFY_BY_EMAIL, STRATEGY_ID, DTYPE)
+values (newid(), now(), 'system', 1,
+	(select id from wf_proc_role wpr where wpr.code = 'Менеджер' ), true, 'garant_ManagerActorStrategy', '10');
+^
+insert into WF_DEFAULT_PROC_ACTOR (ID, CREATE_TS, CREATED_BY, version, PROC_ROLE_ID, NOTIFY_BY_EMAIL, STRATEGY_ID, DTYPE)
+values (newid(), now(), 'system', 1,
+	(select id from wf_proc_role wpr where wpr.code = 'Сотрудник Юридического отдела' ), true, 'garant_LegalActorStrategy', '10');
+^
+insert into WF_DEFAULT_PROC_ACTOR (ID, CREATE_TS, CREATED_BY, version, PROC_ROLE_ID, NOTIFY_BY_EMAIL, STRATEGY_ID, DTYPE)
+values (newid(), now(), 'system', 1,
+	(select id from wf_proc_role wpr where wpr.code = 'Сотрудник Служба безопасности' ), true, 'garant_SbActorStrategy', '10');
+^
 
 
 

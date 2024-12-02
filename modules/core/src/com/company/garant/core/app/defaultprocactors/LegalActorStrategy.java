@@ -19,7 +19,7 @@ import javax.inject.Inject;
 
 @Component(LegalActorStrategy.NAME)
 public class LegalActorStrategy implements DefaultProcessActorAssignmentStrategy {
-    public static final String NAME = "garant_SbActorStrategy";
+    public static final String NAME = "garant_LegalActorStrategy";
     @Inject
     protected DataManager dataManager;
     @Override

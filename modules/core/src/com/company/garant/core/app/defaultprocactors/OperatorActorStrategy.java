@@ -17,9 +17,9 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 
-@Component(SbActorStrategy.NAME)
-public class SbActorStrategy implements DefaultProcessActorAssignmentStrategy {
-    public static final String NAME = "garant_SbActorStrategy";
+@Component(OperatorActorStrategy.NAME)
+public class OperatorActorStrategy implements DefaultProcessActorAssignmentStrategy {
+    public static final String NAME = "garant_OperatorActorStrategy";
     @Inject
     protected DataManager dataManager;
     @Override
@@ -31,13 +31,13 @@ public class SbActorStrategy implements DefaultProcessActorAssignmentStrategy {
     public User getUser(TsDefaultProcActor defaultProcessActor, Card card) {
         return dataManager.load(User.class)
                 .query("select u from sec$User u join u.userRoles ur where ur.role.name =:nameRole")
-                .parameter("nameRole", "securityDepartment")
+                .parameter("nameRole", "Operator")
                 .view(View.MINIMAL)
                 .one();
     }
 
     @Override
     public String getCaption() {
-        return "Служба безопасности";
+        return "Оператор";
     }
 }
