@@ -1,0 +1,63 @@
+<folders xmlns="http://schemas.haulmont.com/thesis/4.0/folders.xsd">
+    <!-- OnlineOrders folders-->
+    <folder>
+        <name>AppFolder_OnlineCreditOrder.onlineorders</name>
+        <sortOrder>-1</sortOrder>
+        <roles>
+            <role>Administrators</role>
+            <role>doc_initiator</role>
+        </roles>
+    </folder>
+
+    <folder>
+        <name>AppFolder_OnlineCreditOrder.newonlineorder</name>
+        <sortOrder>1</sortOrder>
+        <entity>garant$CreditOrder</entity>
+        <parent>AppFolder_OnlineCreditOrder.onlineorders</parent>
+        <roles>
+            <role>Administrators</role>
+            <role>doc_initiator</role>
+        </roles>
+
+        <quantityScript>com/company/garant/core/appfolders/order/NewQty.groovy</quantityScript>
+        <cardsSelectScript>
+            com/company/garant/core/appfolders/order/NewOrdersSelectScript.groovy
+        </cardsSelectScript>
+
+        <filterQuery>
+            {E}.substitutedCreator.id = :session$userId and {E}.state is null
+        </filterQuery>
+    </folder>
+
+    <folder>
+        <name>AppFolder_OnlineCreditOrder.inworkonlineorder</name>
+        <sortOrder>2</sortOrder>
+        <entity>garant$CreditOrder</entity>
+        <parent>AppFolder_OnlineCreditOrder.onlineorders</parent>
+        <roles>
+            <role>Administrators</role>
+            <role>doc_initiator</role>
+        </roles>
+        <!--
+<conditions>
+    <condition>
+        <process>Proverka</process>
+        <states>
+            <state>Oplatit</state>
+        </states>
+    </condition>
+</conditions>
+        -->
+        <quantityScript>com/company/garant/core/appfolders/order/InWorkQty.groovy</quantityScript>
+
+        <cardsSelectScript>
+            com/company/garant/core/appfolders/order/InWorkOrdersSelectScript.groovy
+        </cardsSelectScript>
+        <filterQuery>((({E}.proc.code = 'CreditOrderProc' and ({E}.state like
+            '%,Proverka,%' or {E}.state like '%,Oplatit,%')))
+            and exists (select a from wf$Assignment a where a.card = {E} and
+            a.user.id = :session$userId and a.finished is null))
+        </filterQuery>
+    </folder>
+</folders>
+

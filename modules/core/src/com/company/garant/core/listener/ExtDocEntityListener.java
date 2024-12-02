@@ -13,6 +13,9 @@ public class ExtDocEntityListener extends DocEntityListener {
 
     @Override
     protected String createDescription(Doc entity) {
-        return "(!) " + super.createDescription(entity);
+        if (entity.getDocKind() != null)
+            return "(!) " + super.createDescription(entity);
+        else
+            return null;
     }
 }

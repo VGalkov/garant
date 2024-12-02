@@ -7,19 +7,16 @@
 package com.company.garant.service;
 
 import com.company.garant.entity.Credit;
-import com.company.garant.entity.CreditOrder;
 import com.company.garant.entity.CreditType;
 import com.haulmont.cuba.core.global.CommitContext;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.View;
 import com.haulmont.thesis.core.entity.Bank;
-import com.haulmont.thesis.core.entity.Contractor;
-import org.elasticsearch.search.aggregations.metrics.SumAggregator;
+import com.haulmont.thesis.core.entity.DocKind;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Service(ProjectService.NAME)
@@ -67,6 +64,13 @@ public class ProjectServiceBean implements ProjectService {
 
 
         dataManager.commit(commitContext);
+    }
+
+    @Override
+    public DocKind getCreditOrderDocKind() {
+        return dataManager.load(DocKind.class)
+                .query("select d from df$DocKind d where d.docType.name = 'garant$CreditOrder'")
+                .view(View.LOCAL).one();
     }
 
 }
