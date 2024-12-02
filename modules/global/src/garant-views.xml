@@ -54,8 +54,35 @@
         </property>
         <property name="address" view="_minimal"/>
         <property name="contractor" view="_minimal"/>
-        <property name="docKind" view="_local"/>
-        <property name="attachments" view="_local"/>
+        <property name="number"/>
+        <property name="date"/>
+        <property name="state"/>
+        <property name="substitutedCreator" view="user-minimal"/>
+        <property name="edmInbound"/>
+        <property name="template"/>
+        <property name="currency" view="_minimal"/>
+        <property name="cardAdditionalInfo" view="_local"/>
+        <property name="proc" view="_local"/>
+        <property name="procs" view="card-edit"/>
+        <property name="roles" view="card-edit"/>
+        <property name="attachments" view="doc-edit"/>
+        <property name="docKind" view="edit"/>
+        <property name="organization" view="_local"/>
+        <property name="docCategory" view="_local"/>
+        <property name="owner" view="withuserdepartment"/>
+        <property name="department" view="_local"/>
+        <property name="parentCard" view="card-tree-for-parent"/>
+        <property name="projects" view="_minimal"/>
+        <property name="versionOf" view="_minimal"/>
+        <property name="category" view="_minimal"/>
+        <property name="docSender" view="_minimal"/>
+        <property name="docReceiver" view="_minimal"/>
+        <property name="docCopyReceiver" view="_minimal"/>
+        <property name="project" view="_minimal"/>
+        <property name="packageDoc" view="with-proc-base-info"/>
+        <property name="createdBy"/>
+        <property name="createTs"/>
+        <property name="edmSending" view="with-base-info-for-card"/>
     </view>
     <view entity="garant$Credit" name="edit" extends="_local">
         <property name="bank" view="edit"/>

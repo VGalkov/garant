@@ -5,52 +5,83 @@
   ~ Use is subject to license terms.
   -->
 
-<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+<window
+        xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        xmlns:thesis="http://schemas.haulmont.com/thesis/thesis-window.xsd"
+        class="com.company.garant.web.ui.creditorder.CreditOrderBrowse"
+        extends="com/haulmont/thesis/web/ui/simpledoc/simple-doc-browse.xml"
         caption="msg://creditOrderBrowse.caption"
-        focusComponent="creditOrdersTable"
         messagesPack="com.company.garant.web.ui.creditorder">
-    <data readOnly="true">
-        <collection id="creditOrdersDc" class="com.company.garant.entity.CreditOrder">
-            <view extends="edit">
-                <property name="credit" view="_minimal"/>
-                <property name="address" view="_minimal"/>
-            </view>
-            <loader id="creditOrdersDl">
-                <query>
-                    <![CDATA[select e from garant$CreditOrder e]]>
-                </query>
-            </loader>
-        </collection>
-    </data>
+    <dsContext>
+        <groupDatasource id="cardsDs" class="com.company.garant.entity.CreditOrder" view="edit">
+            <query>
+                <![CDATA[select distinct d from garant$CreditOrder d
+                where d.template = false and d.versionOf is null and d.isArchivedDoc = false
+                order by d.dateTime]]>
+                <filter>
+                    <and>
+                        <c><![CDATA[d.id <> :param$exclItem]]></c>
+                        <c>
+                            <![CDATA[d.imported = true and d.createTs >= :param$startCreateTs and d.createTs <= :param$endCreateTs]]></c>
+                        <c><![CDATA[d.packageDoc is null and :param$exclPackageDocExists = 1]]></c>
+                        <c><![CDATA[d.contractor.id = :param$contractor]]></c>
+                        <c><![CDATA[d.edmInbound = :param$edmInbound]]></c>
+                    </and>
+                </filter>
+            </query>
+        </groupDatasource>
+    </dsContext>
+
+
     <dialogMode height="600" width="800"/>
-    <layout expand="creditOrdersTable" spacing="true">
-        <filter id="genericFilter" applyTo="creditOrdersTable" dataLoader="creditOrdersDl">
-            <properties include=".*"/>
-        </filter>
-        <table id="creditOrdersTable" width="100%" dataContainer="creditOrdersDc">
-            <actions>
-                <action id="create" type="create"/>
-                <action id="edit" type="edit"/>
-                <action id="remove" type="remove"/>
-            </actions>
-            <columns>
-                <column id="credit"/>
-                <column id="workingType"/>
-                <column id="address.city"/>
-                <column id="address.house"/>
-                <column id="address.street"/>
-            </columns>
-            <rowsCount/>
-            <buttonsPanel id="buttonsPanel"
-                          alwaysVisible="true">
-                <button id="createBtn" action="creditOrdersTable.create"/>
-                <button id="editBtn" action="creditOrdersTable.edit"/>
-                <button id="removeBtn" action="creditOrdersTable.remove"/>
-            </buttonsPanel>
-        </table>
-        <hbox id="lookupActions" spacing="true" visible="false">
-            <button action="lookupSelectAction"/>
-            <button action="lookupCancelAction"/>
-        </hbox>
+    <layout>
+        <vbox >
+            <hbox>
+                <filter id="genericFilter" enable="false"/>
+            </hbox>
+
+            <split id="split">
+                <vbox id="table-panel">
+                    <groupTable id="cardsTable">
+                        <buttonsPanel id="buttonsPanel">
+                            <popupButton id="createButton" />
+                            <button id="createDocBtn" />
+                            <thesis:separator/>
+                            <button id="editBtn" />
+                            <button id="removeBtn" />
+                            <button id="saveAsTemplateBtn" />
+                            <thesis:separator/>
+                            <button id="refreshBtn"/>
+                            <button id="excel"/>
+                            <button id="expandBtn"/>
+                            <runReportPopupButton id="printButton" />
+                        </buttonsPanel>
+                        <actions>
+                            <action id="create"/>
+                            <action id="edit"/>
+                            <action id="remove"/>
+                            <action id="saveAsTemplate" />
+                            <action id="deleteNotification"/>
+                            <action id="openNewTab"/>
+                            <action id="showLink"/>
+                            <action id="expand"/>
+                        </actions>
+                        <rowsCount/>
+                        <tableSettings id="tableSettings"/>
+                        <columns includeAll="false">
+                            <column id="credit" />
+                            <column id="docKind"/>
+                            <column id="docCategory"/>
+                            <column id="workingType"/>
+                            <column id="contractor"/>
+                            <column id="date"/>
+                            <column id="number"/>
+                        </columns>
+                        <rows datasource="cardsDs"/>
+                    </groupTable>
+                </vbox>
+                <vbox id="cardDetailsTabSheetBox" />
+            </split>
+        </vbox>
     </layout>
 </window>

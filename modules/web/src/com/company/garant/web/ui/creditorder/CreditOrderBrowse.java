@@ -7,11 +7,14 @@
 package com.company.garant.web.ui.creditorder;
 
 import com.company.garant.entity.CreditOrder;
-import com.haulmont.cuba.gui.screen.*;
+import com.haulmont.thesis.web.ui.simpledoc.SimpleDocBrowser;
 
-@UiController("garant$CreditOrder.browse")
-@UiDescriptor("credit-order-browse.xml")
-@LookupComponent("creditOrdersTable")
-@LoadDataBeforeShow
-public class CreditOrderBrowse extends StandardLookup<CreditOrder> {
+import java.util.Map;
+
+public class CreditOrderBrowse extends SimpleDocBrowser<CreditOrder> {
+    @Override
+    public void init(Map<String, Object> params) {
+        super.init(params);
+        entityName = "garant$CreditOrder";
+    }
 }

@@ -4,9 +4,10 @@
  * Use is subject to license terms.
  */
 
-package com.company.garant.web.ui.extcontractor.exttask;
+package com.company.garant.web.ui.exttask;
 
+import com.company.garant.entity.ExtTask;
 import com.haulmont.thesis.web.ui.task.TaskEditor;
 
-public class ExtTaskEditor extends TaskEditor {
+public class ExtTaskEditor extends TaskEditor<ExtTask> {
 }

@@ -6,7 +6,7 @@
   -->
 
 <window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
-        class="com.company.garant.web.ui.extcontractor.exttask.ExtTaskBrowser"
+        class="com.company.garant.web.ui.exttask.ExtTaskBrowser"
         extends="com/haulmont/thesis/web/ui/task/task-browse.xml"
         messagesPack="com.company.garant.web.ui.exttask">
     <dsContext>

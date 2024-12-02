@@ -5,50 +5,17 @@
   ~ Use is subject to license terms.
   -->
 
-<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="com.company.garant.web.ui.creditorder.CreditOrderEdit"
         caption="msg://creditOrderEdit.caption"
-        focusComponent="form1"
+        extends="com/haulmont/thesis/web/ui/simpledoc/simple-doc-edit.xml"
         messagesPack="com.company.garant.web.ui.creditorder">
-    <data>
-        <instance id="creditOrderDc" class="com.company.garant.entity.CreditOrder">
-            <view extends="edit"/>
-            <loader/>
-        </instance>
-    </data>
-    <dialogMode height="600"  width="800"/>
-    <layout expand="tabSheet" spacing="true">
-        <tabSheet id="tabSheet" width="100%">
-            <tab id="detailsTab" caption="msg://details">
-                <form id="form1" dataContainer="creditOrderDc" width="450px" captionPosition="TOP" height="AUTO">
-                    <column width="100%">
-                        <textField id="bankLabel" property="credit.bank"/>
-                        <pickerField id="creditField" property="credit">
-                            <actions>
-                                <action id="lookup" type="picker_lookup"/>
-                                <action id="clear" type="picker_clear"/>
-                            </actions>
-                        </pickerField>
-                        <lookupField id="workingTypeField" property="workingType"/>
-                        <suggestionPickerField id="contractorField" property="contractor">
-                            <actions>
-                                <action id="lookup" type="picker_lookup"/>
-                                <action id="clear" type="picker_clear"/>
-                            </actions>
-                        </suggestionPickerField>
-                    </column>
-                </form>
-            </tab>
-            <tab id="addressTab" caption="msg://address">
-                <form id="form2" dataContainer="creditOrderDc" width="450px" captionPosition="TOP" height="AUTO">
-                    <textField id="addressCityField" property="address.city" width="100%"/>
-                    <textField id="addressHouseField" property="address.house" width="100%"/>
-                    <textField id="addressStreetField" property="address.street" width="100%"/>
-                </form>
-            </tab>
-        </tabSheet>
-        <hbox id="editActions" spacing="true">
-            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
-            <button id="closeBtn" action="windowClose"/>
-        </hbox>
-    </layout>
+    <dsContext>
+        <datasource id="cardDs" class="com.company.garant.entity.CreditOrder" view="edit">
+            <collectionDatasource id="cardProcDs" property="procs"/>
+            <collectionDatasource id="cardRolesDs" property="roles"/>
+            <collectionDatasource id="cardProjectsDs" property="projects"/>
+        </datasource>
+    </dsContext>
+    <layout/>
 </window>
