@@ -6,14 +6,12 @@
   -->
 
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
-        xmlns:thesis="http://schemas.haulmont.com/thesis/thesis-window.xsd"
-        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
         caption="msg://creditOrderBrowse.caption"
         focusComponent="creditOrdersTable"
         messagesPack="com.company.garant.web.ui.creditorder">
     <data readOnly="true">
         <collection id="creditOrdersDc" class="com.company.garant.entity.CreditOrder">
-            <view extends="_local">
+            <view extends="edit">
                 <property name="credit" view="_minimal"/>
                 <property name="address" view="_minimal"/>
             </view>
@@ -26,7 +24,7 @@
     </data>
     <dialogMode height="600" width="800"/>
     <layout expand="creditOrdersTable" spacing="true">
-        <filter id="filter" applyTo="creditOrdersTable" dataLoader="creditOrdersDl">
+        <filter id="genericFilter" applyTo="creditOrdersTable" dataLoader="creditOrdersDl">
             <properties include=".*"/>
         </filter>
         <table id="creditOrdersTable" width="100%" dataContainer="creditOrdersDc">

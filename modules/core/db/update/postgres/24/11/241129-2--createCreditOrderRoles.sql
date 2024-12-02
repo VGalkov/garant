@@ -1,7 +1,3 @@
--- begin update discriminator for ExtTask
-update WF_CARD set CARD_TYPE = '2000' where CARD_TYPE = '20' ^
--- end update discriminator for ExtTask
-
 insert into sec_role(id, create_ts, created_by, version, name, loc_name, description, role_type, is_default_role, dtype) values
 (newId(), now(), 'system', 1,'Manager', 'Менеджер', 'Менеджер', 0, false, '10');
 
@@ -14,6 +10,4 @@ insert into sec_role(id, create_ts, created_by, version, name, loc_name,descript
 
 insert into sec_role(id, create_ts, created_by, version, name, loc_name, description, role_type, is_default_role, dtype) values
 (newId(), now(), 'system', 1,'legalDepartment', 'Юридический отдел', 'Юридический отдел', 0, false, '10');
-^
-
-
+ ^

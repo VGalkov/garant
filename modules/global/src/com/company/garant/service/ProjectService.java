@@ -6,9 +6,9 @@
 
 package com.company.garant.service;
 
-import com.company.garant.entity.CreditOrder;
 import com.company.garant.entity.CreditType;
 import com.haulmont.thesis.core.entity.Bank;
+import com.haulmont.thesis.core.entity.DocKind;
 
 import javax.validation.constraints.NotNull;
 
@@ -19,4 +19,6 @@ public interface ProjectService {
     Double getBankCreditSum(@NotNull Bank bank);
 
     void addCreditTypeSum(@NotNull CreditType creditType, @NotNull Double sum);
+
+    DocKind getCreditOrderDocKind();
 }

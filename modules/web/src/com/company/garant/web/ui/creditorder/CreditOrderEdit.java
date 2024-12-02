@@ -42,4 +42,10 @@ public class CreditOrderEdit extends StandardEditor<CreditOrder> {
                     .show();
     }
 
+    @Subscribe
+    public void onBeforeCommitChanges(BeforeCommitChangesEvent event) {
+        if (getEditedEntity().getDocKind() == null)
+            getEditedEntity().setDocKind(projectService.getCreditOrderDocKind());
+    }
+
 }
