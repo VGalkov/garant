@@ -32,7 +32,7 @@ public class SbActorStrategy implements DefaultProcessActorAssignmentStrategy {
         return dataManager.load(User.class)
                 .query("select u from sec$User u join u.userRoles ur where ur.role.name =:nameRole")
                 .parameter("nameRole", "securityDepartment")
-                .view(View.MINIMAL)
+                .view(View.LOCAL)
                 .one();
     }
 

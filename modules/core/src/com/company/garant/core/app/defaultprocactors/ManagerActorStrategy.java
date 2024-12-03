@@ -32,7 +32,7 @@ public class ManagerActorStrategy implements DefaultProcessActorAssignmentStrate
         return dataManager.load(User.class)
                 .query("select u from sec$User u join u.userRoles ur where ur.role.name =:nameRole")
                 .parameter("nameRole", "Manager")
-                .view(View.MINIMAL)
+                .view(View.LOCAL)
                 .one();
     }
 

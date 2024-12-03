@@ -22,8 +22,8 @@
             <tabSheet id="tabsheet">
                 <tab id="mainTab">
                     <form id="form1" width="AUTO" captionPosition="TOP" height="AUTO">
-                        <textField id="bankLabel" property="credit.bank" datasource="cardDs"
-                                   enable="false"/>
+                        <textField id="bankLabel" property="credit.bank" datasource="cardDs" enable="false"/>
+                        <textField id="repaymentAmountField" property="repaymentAmount" datasource="cardDs"/>
                         <pickerField id="creditField" property="credit" datasource="cardDs">
                             <actions>
                                 <action id="lookup" type="picker_lookup"/>
@@ -31,8 +31,7 @@
                             </actions>
                         </pickerField>
                         <lookupField id="workingTypeField" property="workingType" datasource="cardDs"/>
-                        <suggestionPickerField id="contractorField" property="contractor"
-                                               datasource="cardDs">
+                        <suggestionPickerField id="contractorField" property="contractor" datasource="cardDs">
                             <actions>
                                 <action id="lookup" type="picker_lookup"/>
                                 <action id="clear" type="picker_clear"/>

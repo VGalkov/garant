@@ -63,8 +63,8 @@ create table GARANT_CREDIT_ORDER (
     ADDRESS_STREET varchar(255),
     --
     CREDIT_ID uuid,
-    CONTRACTOR_ID uuid,
     WORKING_TYPE integer,
+    REPAYMENT_AMOUNT double precision,
     --
     primary key (ID)
 )^

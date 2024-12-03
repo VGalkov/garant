@@ -8,7 +8,6 @@ package com.company.garant.entity;
 
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.annotation.EmbeddedParameters;
-import com.haulmont.thesis.core.entity.Contractor;
 import com.haulmont.thesis.core.entity.SimpleDoc;
 
 import javax.persistence.*;
@@ -25,12 +24,11 @@ public class CreditOrder extends SimpleDoc {
     @JoinColumn(name = "CREDIT_ID")
     protected Credit credit;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CONTRACTOR_ID")
-    protected Contractor contractor;
-
     @Column(name = "WORKING_TYPE")
     protected Integer workingType;
+
+    @Column(name = "REPAYMENT_AMOUNT")
+    protected Double repaymentAmount = 0D;
 
     @Embedded
     @EmbeddedParameters(nullAllowed = false)
@@ -65,13 +63,11 @@ public class CreditOrder extends SimpleDoc {
         this.credit = credit;
     }
 
-    @Override
-    public Contractor getContractor() {
-        return contractor;
+    public Double getRepaymentAmount() {
+        return repaymentAmount;
     }
 
-    @Override
-    public void setContractor(Contractor contractor) {
-        this.contractor = contractor;
+    public void setRepaymentAmount(Double repaymentAmount) {
+        this.repaymentAmount = repaymentAmount;
     }
 }
