@@ -54,6 +54,13 @@ create table GARANT_TARGET (
     primary key (ID)
 )^
 -- end GARANT_TARGET
+-- begin GARANT_EXT_CONTRACTOR
+create table GARANT_EXT_CONTRACTOR (
+    CONTRACTOR_ID uuid,
+    --
+    primary key (CONTRACTOR_ID)
+)^
+-- end GARANT_EXT_CONTRACTOR
 -- begin GARANT_CREDIT_ORDER
 create table GARANT_CREDIT_ORDER (
     ID uuid,
@@ -72,10 +79,3 @@ create table GARANT_CREDIT_ORDER (
 -- begin TM_TASK
 alter table TM_TASK add column CREDIT_ORDER_ID uuid ^
 -- end TM_TASK
--- begin GARANT_EXT_CONTRACTOR
-create table GARANT_EXT_CONTRACTOR (
-    CONTRACTOR_ID uuid,
-    --
-    primary key (CONTRACTOR_ID)
-)^
--- end GARANT_EXT_CONTRACTOR
