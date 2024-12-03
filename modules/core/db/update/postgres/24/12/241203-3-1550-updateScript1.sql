@@ -1,6 +1,3 @@
--- begin update discriminator for ExtTask
-update WF_CARD set CARD_TYPE = '2000' where CARD_TYPE = '20' ^
--- end update discriminator for ExtTask
 insert into GARANT_CREDIT_TYPE (ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY,
 CODE, NAME, COMMENT_)
 values (newid(), now(), 'system', 1, now(), null, null, null,
