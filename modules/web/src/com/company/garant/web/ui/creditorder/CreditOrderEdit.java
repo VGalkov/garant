@@ -12,7 +12,10 @@ import com.company.garant.entity.CreditOrder;
 import com.company.garant.service.ProjectService;
 import com.haulmont.cuba.core.global.Messages;
 import com.haulmont.cuba.gui.Notifications;
+import com.haulmont.cuba.gui.components.Component;
 import com.haulmont.cuba.gui.components.SuggestionPickerField;
+import com.haulmont.cuba.gui.components.TextField;
+import com.haulmont.cuba.web.gui.components.WebButton;
 import com.haulmont.thesis.core.entity.Contractor;
 import com.haulmont.thesis.web.ui.simpledoc.SimpleDocEditor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +31,15 @@ public class CreditOrderEdit extends SimpleDocEditor<CreditOrder> {
     protected Notifications notifications;
     @Autowired
     protected Messages messages;
-
+    @Autowired
+    protected TextField<Double> repaymentAmountField;
+    private static final String POGASHENIE_TRANSITION_ACTION = "Pogashenie_kredita.Pogasil";
+    private static final String CREDIT_ORDER_PROCESS = "OnlineCreditOrderProcess";
 
     @Override
     protected void cardPropertyChanged(String property, Object prevValue, Object value) {
         super.cardPropertyChanged(property, prevValue, value);
-        if ("credit".equals(property))
+        if ("credit".equals(property)) {
             if (value != null && ((Credit) value).getBank() != null && contractorField.getValue() != null) {
                 notifications.create(Notifications.NotificationType.TRAY)
                         .withCaption(messages.formatMessage(
@@ -42,22 +48,41 @@ public class CreditOrderEdit extends SimpleDocEditor<CreditOrder> {
                                 projectService.getBankCreditNumber(((Credit) value).getBank()),
                                 ((Credit) value).getBank().getName())
                         ).show();
-            } else if ("repaymentAmountField".equals(property))
-                setProcTransitionGate();
+            }
+        } else if ("repaymentAmount".equals(property))
+            setTransitionActionState();
     }
 
     @Override
     protected void postInit() {
         super.postInit();
-        setProcTransitionGate();
     }
 
-    protected void setProcTransitionGate() {
+    protected void setProcTransitionAviability() {
         if (getEditedEntity().getProc() != null &&
-                "OnlineCreditOrderProcess".equals(getEditedEntity().getProc().getCode()) &&
-                actionsFrame != null &&
-                actionsFrame.getAction("actionPogashenie") != null
+                CREDIT_ORDER_PROCESS.equals(getEditedEntity().getProc().getCode()) &&
+                !actionsFrame.getProcActionsContainer().getComponents().isEmpty()
         )
-            actionsFrame.getAction("actionPogashenie").setEnabled(getEditedEntity().getRepaymentAmount() != 0D);
+            setTransitionActionState();
+    }
+
+    private void setTransitionActionState() {
+        actionsFrame.getProcActionsContainer().getComponents().forEach(component -> {
+            if (checkTransitionAction(component) && ((WebButton) component).getAction() != null)
+                ((WebButton) component).getAction().setEnabled(
+                        repaymentAmountField != null && repaymentAmountField.getValue() != null && repaymentAmountField.getValue() != 0D
+                );
+        });
+    }
+
+    private boolean checkTransitionAction(Component component) {
+        return component instanceof WebButton &&
+                ((WebButton) component).getAction() != null &&
+                POGASHENIE_TRANSITION_ACTION.equals(((WebButton) component).getAction().getId());
+    }
+
+    protected void initActionsFrame() {
+        super.initActionsFrame();
+        setProcTransitionAviability();
     }
 }

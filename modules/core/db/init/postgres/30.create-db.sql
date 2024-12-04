@@ -59,15 +59,31 @@ VALUES(newid(), 1, now(), 'admin', now(), NULL, NULL, NULL, 'goal 3', '3');
 
 insert into sec_role(id, create_ts, created_by, version, name, loc_name, description, role_type, is_default_role, dtype) values
 (newId(), now(), 'system', 1,'Менеджер', 'Менеджер', 'Менеджер', 0, false, '10');
-
+^
+--select create_or_update_sec_permissi('Менеджер', 'garant$CreditOrder:create',20, 1)
+--select create_or_update_sec_permissi('Менеджер', 'garant$CreditOrder:update',20, 1)
+--select create_or_update_sec_permissi('Менеджер', 'garant$CreditOrder:delete',20, 1)
+^
 insert into sec_role(id, create_ts, created_by, version, name, loc_name,description, role_type, is_default_role, dtype) values
 (newId(), now(), 'system', 1,'Оператор', 'Оператор', 'Оператор', 0, false, '10');
-
+^
+--select create_or_update_sec_permissi('Оператор', 'garant$CreditOrder:create',20, 1)
+--select create_or_update_sec_permissi('Оператор', 'garant$CreditOrder:update',20, 1)
+--select create_or_update_sec_permissi('Оператор', 'garant$CreditOrder:delete',20, 1)
+^
 insert into sec_role(id, create_ts, created_by, version, name, loc_name,description, role_type, is_default_role, dtype) values
 (newId(), now(), 'system', 1,'securityDepartment', 'СБ', 'СБ', 0, false, '10');
-
+^
+--select create_or_update_sec_permissi('securityDepartment', 'garant$CreditOrder:create',20, 1)
+--select create_or_update_sec_permissi('securityDepartment', 'garant$CreditOrder:update',20, 1)
+--select create_or_update_sec_permissi('securityDepartment', 'garant$CreditOrder:delete',20, 1)
+^
 insert into sec_role(id, create_ts, created_by, version, name, loc_name, description, role_type, is_default_role, dtype) values
 (newId(), now(), 'system', 1,'legalDepartment', 'Юрист', 'Юрист', 0, false, '10');
+^
+--select create_or_update_sec_permissi('legalDepartment', 'garant$CreditOrder:create',20, 1)
+--select create_or_update_sec_permissi('legalDepartment', 'garant$CreditOrder:update',20, 1)
+--select create_or_update_sec_permissi('legalDepartment', 'garant$CreditOrder:delete',20, 1)
 ^
 -----------------------------------------------------------------------------
 ---   TASK -----------------------
@@ -115,7 +131,7 @@ VALUES(newid(), now(), 'admin', 1, now(), NULL, NULL, NULL,(select id from sec_u
 ---
 INSERT INTO sec_user_role
 (id, create_ts, created_by, "version", update_ts, updated_by, delete_ts, deleted_by,user_id,role_id,role_name)
-VALUES(newid(), now(), 'admin', 1, now(), NULL, NULL, NULL,(select id from sec_user where login = 'mmm'),(select id from sec_role  where name = 'Manager' limit 1),NULL);
+VALUES(newid(), now(), 'admin', 1, now(), NULL, NULL, NULL,(select id from sec_user where login = 'mmm'),(select id from sec_role  where name = 'Менеджер' limit 1),NULL);
 --- на таску
 INSERT INTO sec_user_role
 (id, create_ts, created_by, "version", update_ts, updated_by, delete_ts, deleted_by,user_id,role_id,role_name)
@@ -174,7 +190,7 @@ VALUES(newid(), now(), 'admin', 1, now(), NULL, NULL, NULL,(select id from sec_u
 ---
 INSERT INTO sec_user_role
 (id, create_ts, created_by, "version", update_ts, updated_by, delete_ts, deleted_by,user_id,role_id,role_name)
-VALUES(newid(), now(), 'admin', 1, now(), NULL, NULL, NULL,(select id from sec_user where login = 'ooo'),(select id from sec_role  where name = 'Operator' limit 1),NULL);
+VALUES(newid(), now(), 'admin', 1, now(), NULL, NULL, NULL,(select id from sec_user where login = 'ooo'),(select id from sec_role  where name = 'Оператор' limit 1),NULL);
 --- на доки
 INSERT INTO sec_user_role
 (id, create_ts, created_by, "version", update_ts, updated_by, delete_ts, deleted_by,user_id,role_id,role_name)
@@ -459,6 +475,32 @@ insert into WF_DEFAULT_PROC_ACTOR (ID, CREATE_TS, CREATED_BY, version, PROC_ROLE
 insert into WF_DEFAULT_PROC_ACTOR (ID, CREATE_TS, CREATED_BY, version, PROC_ROLE_ID, NOTIFY_BY_EMAIL, STRATEGY_ID, DTYPE) values (newid(), now(), 'system', 1, (select id from wf_proc_role wpr where wpr.code = 'СБ' limit 1), true, 'garant_SbActorStrategy', '10');
 insert into WF_DEFAULT_PROC_ACTOR (ID, CREATE_TS, CREATED_BY, version, PROC_ROLE_ID, NOTIFY_BY_EMAIL, STRATEGY_ID, DTYPE) values (newid(), now(), 'system', 1, (select id from wf_proc_role wpr where wpr.code = 'Инициатор' limit 1), true, 'ts_CardAuthorProcessActorStrategy', '10');
 ^
+
+--- замещения
+INSERT INTO public.sec_user_substitution
+(id, create_ts, created_by, "version", update_ts, updated_by, delete_ts, deleted_by, sys_tenant_id, user_id, substituted_user_id, start_date, end_date, notify_by_card_info, notify_by_email, overdue, dtype)
+VALUES(newid(), now(), 'admin', 1, now(), NULL, NULL, NULL, NULL, (select id from sec_user where login ='admin'), (select id from sec_user where login = 'mmm'), NULL, NULL, false, false, false, '10');
+^
+INSERT INTO public.sec_user_substitution
+(id, create_ts, created_by, "version", update_ts, updated_by, delete_ts, deleted_by, sys_tenant_id, user_id, substituted_user_id, start_date, end_date, notify_by_card_info, notify_by_email, overdue, dtype)
+VALUES(newid(), now(), 'admin', 1, now(), NULL, NULL, NULL, NULL, (select id from sec_user where login ='admin'), (select id from sec_user where login = 'ooo'), NULL, NULL, false, false, false, '10');
+^
+INSERT INTO public.sec_user_substitution
+(id, create_ts, created_by, "version", update_ts, updated_by, delete_ts, deleted_by, sys_tenant_id, user_id, substituted_user_id, start_date, end_date, notify_by_card_info, notify_by_email, overdue, dtype)
+VALUES(newid(), now(), 'admin', 1, now(), NULL, NULL, NULL, NULL, (select id from sec_user where login ='admin'), (select id from sec_user where login = 'sss'), NULL, NULL, false, false, false, '10');
+^
+INSERT INTO public.sec_user_substitution
+(id, create_ts, created_by, "version", update_ts, updated_by, delete_ts, deleted_by, sys_tenant_id, user_id, substituted_user_id, start_date, end_date, notify_by_card_info, notify_by_email, overdue, dtype)
+VALUES(newid(), now(), 'admin', 1, now(), NULL, NULL, NULL, NULL, (select id from sec_user where login ='admin'), (select id from sec_user where login = 'lll'), NULL, NULL, false, false, false, '10');
+^
+INSERT INTO public.sec_user_substitution
+(id, create_ts, created_by, "version", update_ts, updated_by, delete_ts, deleted_by, sys_tenant_id, user_id, substituted_user_id, start_date, end_date, notify_by_card_info, notify_by_email, overdue, dtype)
+VALUES(newid(), now(), 'admin', 1, now(), NULL, NULL, NULL, NULL, (select id from sec_user where login ='admin'), (select id from sec_user where login = 'ppp'), NULL, NULL, false, false, false, '10');
+^
+INSERT INTO public.sec_user_substitution
+(id, create_ts, created_by, "version", update_ts, updated_by, delete_ts, deleted_by, sys_tenant_id, user_id, substituted_user_id, start_date, end_date, notify_by_card_info, notify_by_email, overdue, dtype)
+VALUES(newid(), now(), 'admin', 1, now(), NULL, NULL, NULL, NULL, (select id from sec_user where login ='admin'), (select id from sec_user where login = 'ppp2'), NULL, NULL, false, false, false, '10');
+^
+----------------------------------
 -- процесс всё равно развёртывать. просто разворачивать в эту строчку.
 -- OnlineCreditOrderProcess --
-

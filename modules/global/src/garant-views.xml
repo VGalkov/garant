@@ -47,6 +47,15 @@
         <property name="createTs"/>
         <property name="cardAdditionalInfo" view="_local"/>
     </view>
+    <view entity="garant$CreditOrder" name="tray-notification" extends="_minimal">
+        <property name="registered"/>
+        <property name="docKind" view="edit"/>
+        <property name="regNo"/>
+        <property name="regDate"/>
+        <property name="number"/>
+        <property name="date"/>
+        <property name="description"/>
+    </view>
     <view entity="garant$CreditOrder" name="edit" extends="_local">
         <property name="credit" view="_local">
             <property name="bank" view="edit"/>
