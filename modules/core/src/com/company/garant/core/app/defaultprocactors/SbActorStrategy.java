@@ -38,6 +38,6 @@ public class SbActorStrategy implements DefaultProcessActorAssignmentStrategy {
 
     @Override
     public String getCaption() {
-        return "Служба безопасности";
+        return "СБ";
     }
 }

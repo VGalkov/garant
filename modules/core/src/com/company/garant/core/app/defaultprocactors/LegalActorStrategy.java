@@ -38,6 +38,6 @@ public class LegalActorStrategy implements DefaultProcessActorAssignmentStrategy
 
     @Override
     public String getCaption() {
-        return "Юридический отдел";
+        return "Юрист";
     }
 }

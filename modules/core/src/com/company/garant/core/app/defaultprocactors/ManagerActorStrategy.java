@@ -38,6 +38,6 @@ public class ManagerActorStrategy implements DefaultProcessActorAssignmentStrate
 
     @Override
     public String getCaption() {
-        return "Менеджер банка";
+        return "Менеджер";
     }
 }
