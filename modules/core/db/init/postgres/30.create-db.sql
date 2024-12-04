@@ -58,7 +58,7 @@ VALUES(newid(), 1, now(), 'admin', now(), NULL, NULL, NULL, 'goal 3', '3');
 ^
 
 insert into sec_role(id, create_ts, created_by, version, name, loc_name, description, role_type, is_default_role, dtype) values
-(newId(), now(), 'system', 1,'Manager', 'Менеджер банка', 'Менеджер банка', 0, false, '10');
+(newId(), now(), 'system', 1,'Manager', 'Менеджер', 'Менеджер', 0, false, '10');
 
 insert into sec_role(id, create_ts, created_by, version, name, loc_name,description, role_type, is_default_role, dtype) values
 (newId(), now(), 'system', 1,'Operator', 'Оператор', 'Оператор', 0, false, '10');
@@ -454,7 +454,7 @@ VALUES(newid(), now(), 'admin', 1, now(), NULL, NULL, NULL,(select id from sec_u
 -------------------------------------------------------------------------
 
 insert into WF_DEFAULT_PROC_ACTOR (ID, CREATE_TS, CREATED_BY, version, PROC_ROLE_ID, NOTIFY_BY_EMAIL, STRATEGY_ID, DTYPE) values (newid(), now(), 'system', 1, (select id from wf_proc_role wpr where wpr.code = 'Оператор' limit 1), true, 'garant_OperatorActorStrategy', '10');
-insert into WF_DEFAULT_PROC_ACTOR (ID, CREATE_TS, CREATED_BY, version, PROC_ROLE_ID, NOTIFY_BY_EMAIL, STRATEGY_ID, DTYPE) values (newid(), now(), 'system', 1, (select id from wf_proc_role wpr where wpr.code = 'Менеджер банка' limit 1), true, 'garant_ManagerActorStrategy', '10');
+insert into WF_DEFAULT_PROC_ACTOR (ID, CREATE_TS, CREATED_BY, version, PROC_ROLE_ID, NOTIFY_BY_EMAIL, STRATEGY_ID, DTYPE) values (newid(), now(), 'system', 1, (select id from wf_proc_role wpr where wpr.code = 'Менеджер' limit 1), true, 'garant_ManagerActorStrategy', '10');
 insert into WF_DEFAULT_PROC_ACTOR (ID, CREATE_TS, CREATED_BY, version, PROC_ROLE_ID, NOTIFY_BY_EMAIL, STRATEGY_ID, DTYPE) values (newid(), now(), 'system', 1, (select id from wf_proc_role wpr where wpr.code = 'Юрист' limit 1), true, 'garant_LegalActorStrategy', '10');
 insert into WF_DEFAULT_PROC_ACTOR (ID, CREATE_TS, CREATED_BY, version, PROC_ROLE_ID, NOTIFY_BY_EMAIL, STRATEGY_ID, DTYPE) values (newid(), now(), 'system', 1, (select id from wf_proc_role wpr where wpr.code = 'СБ' limit 1), true, 'garant_SbActorStrategy', '10');
 insert into WF_DEFAULT_PROC_ACTOR (ID, CREATE_TS, CREATED_BY, version, PROC_ROLE_ID, NOTIFY_BY_EMAIL, STRATEGY_ID, DTYPE) values (newid(), now(), 'system', 1, (select id from wf_proc_role wpr where wpr.code = 'Инициатор' limit 1), true, 'ts_CardAuthorProcessActorStrategy', '10');
