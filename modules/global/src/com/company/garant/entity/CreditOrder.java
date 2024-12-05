@@ -15,7 +15,7 @@ import javax.persistence.*;
 @DiscriminatorValue("427")
 @Table(name = "GARANT_CREDIT_ORDER")
 @Entity(name = "garant$CreditOrder")
-@NamePattern("%s|credit")
+@NamePattern("%s|id")
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class CreditOrder extends SimpleDoc {
     private static final long serialVersionUID = -5910365044496776192L;

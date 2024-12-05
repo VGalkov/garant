@@ -10,7 +10,6 @@ package com.company.garant.web.ui.creditorder;
 import com.company.garant.entity.Credit;
 import com.company.garant.entity.CreditOrder;
 import com.company.garant.service.ProjectService;
-import com.haulmont.cuba.core.global.Messages;
 import com.haulmont.cuba.gui.Notifications;
 import com.haulmont.cuba.gui.components.Component;
 import com.haulmont.cuba.gui.components.SuggestionPickerField;
@@ -27,10 +26,6 @@ public class CreditOrderEdit extends SimpleDocEditor<CreditOrder> {
     private SuggestionPickerField<Contractor> contractorField;
     @Autowired
     protected ProjectService projectService;
-    @Autowired
-    protected Notifications notifications;
-    @Autowired
-    protected Messages messages;
     @Autowired
     protected TextField<Double> repaymentAmountField;
     private static final String POGASHENIE_TRANSITION_ACTION = "Pogashenie_kredita.Pogasil";

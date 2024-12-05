@@ -109,7 +109,7 @@ VALUES(newid(), now(), 'admin', 1, now(), NULL, NULL, NULL, 'Заявка на �
 INSERT INTO public.df_doc_kind
 (category_id, create_ts, created_by, "version", update_ts, updated_by, delete_ts, deleted_by, doc_type_id, code, description, fields_xml, numerator_id, numerator_type, prefix, category_attrs_place, use_all_procs, organization_id, tab_name, create_only_by_template, disable_add_process_actors, portal_publish_allowed, available_to_create_on_mob_cl)
 VALUES((select id from SYS_CATEGORY where entity_type='garant$CreditOrder' and name = 'Заявка на кредит' limit 1),
-NULL, NULL, 1, NULL, NULL, NULL, NULL, (select id from ts_card_type where discriminator = 427 and name = 'garant$CreditOrder' limit 1), '427', NULL, '', NULL, 1, NULL, 1, true, NULL, NULL, false, false, false, true);
+NULL, NULL, 1, NULL, NULL, NULL, NULL, (select id from ts_card_type where discriminator = 427 and name = 'garant$CreditOrder' limit 1), '427', NULL, '', NULL, 1, NULL, 1, true, NULL, 'Доп. поля', false, false, false, true);
 ^
 update ts_card_type set
 doc_kind_id = (select id from SYS_CATEGORY where entity_type='garant$CreditOrder' and name = 'Заявка на кредит' limit 1)

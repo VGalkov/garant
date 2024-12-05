@@ -9,7 +9,7 @@
         </roles>
     </folder>
 
-    <folder>
+    <folder> <!-- переделать на скрипты.. хотя не нужное усложнение функционала -->
         <name>AppFolder_OnlineCreditOrder.newonlineorder</name>
         <sortOrder>1</sortOrder>
         <entity>garant$CreditOrder</entity>
@@ -17,6 +17,8 @@
         <roles>
             <role>Administrators</role>
             <role>doc_initiator</role>
+            <role>Оператор</role>
+            <role>Менеджер</role>
         </roles>
         <conditions>
             <condition>
@@ -26,16 +28,9 @@
                 </states>
             </condition>
         </conditions>
-        <!--<quantityScript>com/company/garant/core/appfolders/order/NewQty.groovy</quantityScript>
-        <cardsSelectScript>
-            com/company/garant/core/appfolders/order/NewOrdersSelectScript.groovy
-        </cardsSelectScript> -->
-        <filterQuery>
-            {E}.substitutedCreator.id = :session$userId and {E}.state is null
-        </filterQuery>
     </folder>
 
-    <folder>
+    <folder> <!-- переделать на скрипты.. хотя не нужное усложнение функционала -->
         <name>AppFolder_OnlineCreditOrder.inworkonlineorder</name>
         <sortOrder>2</sortOrder>
         <entity>garant$CreditOrder</entity>
@@ -43,23 +38,30 @@
         <roles>
             <role>Administrators</role>
             <role>doc_initiator</role>
+            <role>legalDepartment</role>
+            <role>securityDepartment</role>
+            <role>Оператор</role>
+            <role>Менеджер</role>
         </roles>
-
         <conditions>
             <condition>
                 <process>OnlineCreditOrderProcess</process>
                 <states>
+                    <state>Ne_soglasovano_uridicheskoi_sluzhboi</state>
+                    <state>Soglasovanie</state>
+                    <state>Parallelnoe_naznachenie3</state>
+                    <state>Vydacha_kredita</state>
+                    <state>Proverka_pogasheniya</state>
+                    <state>Uvedomlenie_SB</state>
                     <state>Proverka</state>
+                    <state>Ne_soglasovano_bankom</state>
+                    <state>Proverka_SB</state>
+                    <state>Ne_soglasovano_SB</state>
+                    <state>Proverka_zayavki_ne_proidena</state>
+                    <state>Pogashenie_kredita</state>
                 </states>
             </condition>
         </conditions>
-        <!--<filterQuery>
-            {E}.substitutedCreator.id = :session$userId
-        </filterQuery> -->
-        <!-- <quantityScript>com/company/garant/core/appfolders/order/InWorkQty.groovy</quantityScript>
-         <cardsSelectScript>
-             com/company/garant/core/appfolders/order/InWorkOrdersSelectScript.groovy
-         </cardsSelectScript> -->
     </folder>
 </folders>
 

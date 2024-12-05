@@ -19,17 +19,14 @@ return AppFolderCardsSelector
                 ['OnlineCreditOrderProcess' : [
                                 'Ne_soglasovano_uridicheskoi_sluzhboi',
                                 'Soglasovanie',
-                                'Started',
                                 'Parallelnoe_naznachenie3',
                                 'Vydacha_kredita',
-                                'Kredit_pogashen',
                                 'Proverka_pogasheniya',
                                 'Uvedomlenie_SB',
                                 'Proverka',
                                 'Ne_soglasovano_bankom',
                                 'Proverka_SB',
                                 'Ne_soglasovano_SB',
-                                'Kredit_ne_vydan',
                                 'Proverka_zayavki_ne_proidena',
                                 'Pogashenie_kredita'
                         ]
