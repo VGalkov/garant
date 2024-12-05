@@ -501,7 +501,6 @@ INSERT INTO sec_user_substitution
 (id, create_ts, created_by, "version", update_ts, updated_by, delete_ts, deleted_by, sys_tenant_id, user_id, substituted_user_id, start_date, end_date, notify_by_card_info, notify_by_email, overdue, dtype)
 VALUES(newid(), now(), 'admin', 1, now(), NULL, NULL, NULL, NULL, (select id from sec_user where login ='admin'), (select id from sec_user where login = 'ppp2'), NULL, NULL, false, false, false, '10');
 ^
-
 ----------------------------------
 -- процесс всё равно развёртывать. просто разворачивать в эту строчку.
 -- OnlineCreditOrderProcess --

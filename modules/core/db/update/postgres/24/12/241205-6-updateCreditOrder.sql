@@ -1,4 +1,6 @@
 /*
+update wf_proc set code = 'OnlineCreditOrderProcess', card_types=',garant$CreditOrder,' where name = 'Согласование и выдача кредита'
+^
 -- не в полной мере инсталит нужных пользователей && сотрудников. лучше вручную или запускать и редактировать каждого сотрудника.
 INSERT INTO df_correspondent
 (id, create_ts, created_by, "version", update_ts, updated_by, delete_ts, deleted_by, "name", "type", organization_id, has_attachments)
