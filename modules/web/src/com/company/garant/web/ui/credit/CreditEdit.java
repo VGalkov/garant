@@ -48,12 +48,19 @@ public class CreditEdit extends StandardEditor<Credit> {
         }
     }
 
+
+
+    /*
+    * 3. Добавьте на экран редактирования кредита поле «Общая сумма», которое будет показывать
+общую сумму всех кредитов в выбранном банке. При смене банка сумма будет автоматически
+пересчитываться
+* */
+
     @Subscribe("bankField")
     public void onBankFieldValueChange(HasValue.ValueChangeEvent<Bank> event) {
         if (event.getValue() != null) {
             bankCreditSum.setValue(projectService.getBankCreditSum(event.getValue()));
         } else bankCreditSum.setValue(0D);
     }
-
 
 }

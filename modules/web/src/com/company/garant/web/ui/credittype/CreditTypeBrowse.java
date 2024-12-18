@@ -10,6 +10,7 @@ import com.company.garant.entity.CreditType;
 import com.company.garant.service.ProjectService;
 import com.haulmont.cuba.core.global.Messages;
 import com.haulmont.cuba.gui.Dialogs;
+import com.haulmont.cuba.gui.Notifications;
 import com.haulmont.cuba.gui.app.core.inputdialog.DialogActions;
 import com.haulmont.cuba.gui.app.core.inputdialog.DialogOutcome;
 import com.haulmont.cuba.gui.app.core.inputdialog.InputParameter;
@@ -30,22 +31,36 @@ public class CreditTypeBrowse extends StandardLookup<CreditType> {
     protected Messages messages;
     @Autowired
     protected ProjectService projectService;
+    @Autowired
+    protected Notifications notifications;
+    /*
+    2. Измените экран выбора сущности "Вид кредита", добавьте кнопку для изменения суммы всех
+выданных кредитов данного типа. При нажатии на кнопку показывать окно для ввода значения
+суммы на которую нужно увеличить кредиты. Используете ранее написанный сервис
+
+     */
 
     public void addNewSum() {
-        dialogs.createInputDialog(this).withCaption(messages.getMessage(this.getClass(), "changeLocationDialog"))
-                .withParameters(
-                        InputParameter
-                                .doubleParameter("sum")
-                                .withCaption(messages.getMessage(this.getClass(), "sum"))
-                                .withRequired(true)
-                                .withDefaultValue(0D)
-                )
-                .withActions(DialogActions.OK_CANCEL)
-                .withCloseListener(closeEvent -> {
-                    if (closeEvent.closedWith(DialogOutcome.OK) && closeEvent.getValue("sum") != null)
-                        addCreditTypeSum(closeEvent.getValue("sum"));
-                }
-                ).show();
+        if (creditTypesTable.getSelected().isEmpty()) {
+            notifications.create(Notifications.NotificationType.TRAY)
+                    .withCaption(messages.getMessage(this.getClass(), "chooseCreditType"))
+                    .show();
+        } else {
+            dialogs.createInputDialog(this).withCaption(messages.getMessage(this.getClass(), "changeLocationDialog"))
+                    .withParameters(
+                            InputParameter
+                                    .doubleParameter("sum")
+                                    .withCaption(messages.getMessage(this.getClass(), "sum"))
+                                    .withRequired(true)
+                                    .withDefaultValue(0D)
+                    )
+                    .withActions(DialogActions.OK_CANCEL)
+                    .withCloseListener(closeEvent -> {
+                                if (closeEvent.closedWith(DialogOutcome.OK) && closeEvent.getValue("sum") != null)
+                                    addCreditTypeSum(closeEvent.getValue("sum"));
+                            }
+                    ).show();
+        }
     }
 
     protected void addCreditTypeSum(Double sum) {

@@ -25,6 +25,9 @@ public class CreditOrder extends Doc {
     @JoinColumn(name = "CREDIT_ID")
     protected Credit credit;
 
+    //Внесите изменения в сущность документа "Заявка на кредит", чтобы появилась возможность
+    //предоставлять займы не только физическим, но и юридическим лицам. Добавление
+    //дополнительных полей не требуется
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CONTRACTOR_ID")
     protected Contractor contractor;
