@@ -6,12 +6,12 @@
   -->
 
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
-        caption="msg://targetEdit.caption"
+        caption="msg://creditTypeEdit.caption"
         focusComponent="form"
-        messagesPack="com.company.garant.web.ui.target">
+        messagesPack="com.company.garant.web.ui.credittype">
     <data>
-        <instance id="targetDc"
-                  class="com.company.garant.entity.Target">
+        <instance id="creditTypeDc"
+                  class="com.company.garant.entity.CreditType">
             <view extends="_local"/>
             <loader/>
         </instance>
@@ -19,10 +19,11 @@
     <dialogMode height="600"
                 width="800"/>
     <layout expand="editActions" spacing="true">
-        <form id="form" dataContainer="targetDc" width="100%" captionPosition="TOP" height="AUTO">
+        <form id="form" dataContainer="creditTypeDc" width="100%" captionPosition="TOP" height="AUTO">
             <column width="450px">
-                <textField id="nameField" property="name"/>
                 <textField id="codeField" property="code"/>
+                <textField id="nameField" property="name"/>
+                <textArea id="commentField" property="comment" rows="5"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">
