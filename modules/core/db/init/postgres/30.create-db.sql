@@ -81,11 +81,14 @@ where discriminator = 427 and name = 'garant$CreditOrder'
 ---
 
 ------------ TASK -----------------------
-INSERT INTO public.sys_category
+INSERT INTO sys_category
 (id, create_ts, created_by, "version", update_ts, updated_by, delete_ts, deleted_by, "name", special, entity_type, is_default, discriminator, locale_names)
 VALUES(newid(), now(), 'admin', 2, now(), 'admin', NULL, NULL, 'Заявка на кредит', NULL, 'tm$Task', NULL, 2, NULL);
 ^
-INSERT INTO public.tm_task_type
+INSERT INTO tm_task_type
 (category_id, category_attrs_place, code, description, fields_xml, create_ts, created_by, "version", update_ts, updated_by, delete_ts, deleted_by, tab_name)
 VALUES((select id from sys_category where name ='Заявка на кредит' and (entity_type = 'tm$Task' or entity_type = 'garant$ExtTask') limit 1), 1, '427', 'Заявка на кредит', '', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'Доп. поля');
 ^
+-- begin update discriminator for ExtTask
+update WF_CARD set CARD_TYPE = '2000' where CARD_TYPE = '20' ^
+-- end update discriminator for ExtTask

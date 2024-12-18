@@ -1,0 +1,1 @@
+alter table GARANT_EXT_CONTRACTOR add constraint FK_GARANT_EXT_CONTRACTOR_ON_CONTRACTOR foreign key (CONTRACTOR_ID) references DF_CORRESPONDENT(ID) on delete CASCADE;
