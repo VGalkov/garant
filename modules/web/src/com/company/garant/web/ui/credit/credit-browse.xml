@@ -6,8 +6,6 @@
   -->
 
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
-        xmlns:thesis="http://schemas.haulmont.com/thesis/thesis-window.xsd"
-        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
         caption="msg://creditBrowse.caption"
         focusComponent="creditsTable"
         messagesPack="com.company.garant.web.ui.credit">
@@ -18,6 +16,7 @@
                 <property name="creditType" view="_minimal"/>
                 <property name="bank" view="_minimal"/>
                 <property name="target" view="_minimal"/>
+                <property name="manager" view="_minimal"/>
             </view>
             <loader id="creditsDl">
                 <query>
@@ -43,6 +42,7 @@
                 <column id="date"/>
                 <column id="sum"/>
                 <column id="target"/>
+                <column id="manager"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

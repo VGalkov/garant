@@ -10,6 +10,7 @@ import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.OnDelete;
 import com.haulmont.cuba.core.global.DeletePolicy;
+import com.haulmont.cuba.security.entity.User;
 import com.haulmont.thesis.core.entity.Bank;
 
 import javax.persistence.*;
@@ -29,6 +30,10 @@ public class Credit extends StandardEntity {
     protected CreditType creditType;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MANAGER_ID")
+    protected User manager;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "BANK_ID")
     protected Bank bank;
 
@@ -43,6 +48,14 @@ public class Credit extends StandardEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "TARGET_ID")
     protected Target target;
+
+    public User getManager() {
+        return manager;
+    }
+
+    public void setManager(User manager) {
+        this.manager = manager;
+    }
 
     public Double getSum() {
         return sum;

@@ -6,8 +6,6 @@
   -->
 
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
-        xmlns:thesis="http://schemas.haulmont.com/thesis/thesis-window.xsd"
-        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
         caption="msg://creditOrderBrowse.caption"
         focusComponent="creditOrdersTable"
         messagesPack="com.company.garant.web.ui.creditorder">
@@ -15,7 +13,6 @@
         <collection id="creditOrdersDc" class="com.company.garant.entity.CreditOrder">
             <view extends="_local">
                 <property name="credit" view="_minimal"/>
-                <property name="loader" view="_minimal"/>
                 <property name="address" view="_minimal"/>
             </view>
             <loader id="creditOrdersDl">
@@ -38,7 +35,6 @@
             </actions>
             <columns>
                 <column id="credit"/>
-                <column id="loader"/>
                 <column id="workingType"/>
                 <column id="address.city"/>
                 <column id="address.house"/>

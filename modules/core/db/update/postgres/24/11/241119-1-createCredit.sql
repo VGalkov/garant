@@ -9,6 +9,7 @@ create table GARANT_CREDIT (
     DELETED_BY varchar(50),
     --
     CREDIT_TYPE_ID uuid not null,
+    MANAGER_ID uuid,
     BANK_ID uuid,
     DATE_ date,
     SUM double precision,
