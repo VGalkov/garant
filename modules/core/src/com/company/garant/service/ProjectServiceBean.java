@@ -48,6 +48,8 @@ public class ProjectServiceBean implements ProjectService {
 
     //Создать сервис считающий сумму всех кредитов в конкретном банке, банк передается в сервис
     // как параметр
+
+    // ВНИМАНИЕ сервис сделан по прямому требованию задания, но не найдено место, где его применять!!!
     @Override
     public Integer getBankCreditNumber(@NotNull Bank bank) {
         //посчитать все Credit в Bank
