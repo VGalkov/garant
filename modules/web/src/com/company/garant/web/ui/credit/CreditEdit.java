@@ -6,24 +6,16 @@
 
 package com.company.garant.web.ui.credit;
 
+import com.company.garant.entity.Credit;
 import com.company.garant.service.ProjectService;
 import com.haulmont.cuba.core.global.Messages;
 import com.haulmont.cuba.gui.Dialogs;
 import com.haulmont.cuba.gui.components.DialogAction;
 import com.haulmont.cuba.gui.components.HasValue;
 import com.haulmont.cuba.gui.components.TextField;
-import com.haulmont.cuba.gui.components.Window;
-import com.haulmont.cuba.gui.model.DataContext;
 import com.haulmont.cuba.gui.screen.*;
-import com.company.garant.entity.Credit;
-import com.haulmont.cuba.gui.util.OperationResult;
 import com.haulmont.thesis.core.entity.Bank;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.Objects;
-import java.util.concurrent.atomic.AtomicReference;
-
-import static com.haulmont.cuba.gui.components.Window.COMMIT_ACTION_ID;
 
 @UiController("garant$Credit.edit")
 @UiDescriptor("credit-edit.xml")
@@ -55,6 +47,14 @@ public class CreditEdit extends StandardEditor<Credit> {
             event.preventWindowClose();
         }
     }
+
+
+
+    /*
+    * 3. Добавьте на экран редактирования кредита поле «Общая сумма», которое будет показывать
+общую сумму всех кредитов в выбранном банке. При смене банка сумма будет автоматически
+пересчитываться
+* */
 
     @Subscribe("bankField")
     public void onBankFieldValueChange(HasValue.ValueChangeEvent<Bank> event) {

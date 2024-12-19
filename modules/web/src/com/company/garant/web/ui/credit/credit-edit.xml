@@ -31,7 +31,7 @@
                         <action id="clear" type="picker_clear"/>
                     </actions>
                 </pickerField>
-                <pickerField id="bankField" property="bank">
+                <pickerField id="bankField" property="bank" caption="msg://amount">
                     <actions>
                         <action id="lookup" type="picker_lookup"/>
                         <action id="clear" type="picker_clear"/>
