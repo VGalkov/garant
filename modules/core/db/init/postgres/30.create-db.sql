@@ -2,6 +2,12 @@
 update WF_CARD set CARD_TYPE = '2000' where CARD_TYPE = '20' ^
 -- end update discriminator for ExtTask
 ^
+--Напишите Groovy скрипт обновления базы данных для создания значений справочника "Вид
+--кредита" из строки: "Ипотека,Кредит под залог недвижимости, Автокредит,
+--Потребительские,Рефинансирование, Реструктуризация"
+
+-- здесь множество разных предустановок, делающих удобным посмотреть что вообще происзодит в системе.
+
 
 insert into GARANT_CREDIT_TYPE (ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY,
 CODE, NAME, COMMENT_)
