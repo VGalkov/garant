@@ -24,14 +24,14 @@
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="creditDc" width="100%" captionPosition="TOP" height="AUTO">
             <column width="450px">
-                <textField id="bankCreditSum" datatype="double" editable="false" caption="msg://bank"/>
+                <textField id="bankCreditSum" datatype="double" editable="false" caption="msg://amount"/>
                 <pickerField id="creditTypeField" property="creditType">
                     <actions>
                         <action id="lookup" type="picker_lookup"/>
                         <action id="clear" type="picker_clear"/>
                     </actions>
                 </pickerField>
-                <pickerField id="bankField" property="bank" caption="msg://amount">
+                <pickerField id="bankField" property="bank">
                     <actions>
                         <action id="lookup" type="picker_lookup"/>
                         <action id="clear" type="picker_clear"/>
