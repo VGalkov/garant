@@ -29,6 +29,8 @@ public class Credit extends StandardEntity {
     @JoinColumn(name = "CREDIT_TYPE_ID")
     protected CreditType creditType;
 
+    //Измените карточку "Кредит", добавьте новое поле "Менеджер банка" - ссылка на сущность
+    //"Пользователь" из ТЕЗИС
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MANAGER_ID")
     protected User manager;

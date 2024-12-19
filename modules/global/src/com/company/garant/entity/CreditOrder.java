@@ -8,6 +8,7 @@ package com.company.garant.entity;
 
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.annotation.EmbeddedParameters;
+import com.haulmont.thesis.core.entity.Contractor;
 import com.haulmont.thesis.core.entity.SimpleDoc;
 
 import javax.persistence.*;
@@ -27,6 +28,12 @@ public class CreditOrder extends SimpleDoc {
     @Column(name = "WORKING_TYPE")
     protected Integer workingType;
 
+    //Внесите изменения в сущность документа "Заявка на кредит", чтобы появилась возможность
+    //предоставлять займы не только физическим, но и юридическим лицам. Добавление
+    //дополнительных полей не требуется
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CONTRACTOR_ID")
+    protected Contractor contractor;
     @Column(name = "REPAYMENT_AMOUNT")
     protected Double repaymentAmount = 0D;
 

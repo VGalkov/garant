@@ -71,6 +71,7 @@ create table GARANT_CREDIT_ORDER (
     --
     CREDIT_ID uuid,
     WORKING_TYPE integer,
+    CONTRACTOR_ID uuid,
     REPAYMENT_AMOUNT double precision,
     --
     primary key (ID)

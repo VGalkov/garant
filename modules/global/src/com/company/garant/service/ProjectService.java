@@ -6,6 +6,7 @@
 
 package com.company.garant.service;
 
+import com.company.garant.entity.CreditOrder;
 import com.company.garant.entity.CreditType;
 import com.haulmont.thesis.core.entity.Bank;
 import com.haulmont.thesis.core.entity.DocKind;
@@ -14,6 +15,11 @@ import javax.validation.constraints.NotNull;
 
 public interface ProjectService {
     String NAME = "garant_ProjectService";
+
+    //Создайте сервис, который принимает в качестве параметра «Заявку на кредит» и возвращает
+    // общее количество заявок заёмщика в определённом банке. Банк выбирается из сущности
+    // "Кредит", связанной с этой "Заявкой на кредит"
+    Integer getServiceOneSum(CreditOrder creditOrder);
 
     Integer getBankCreditNumber(@NotNull Bank bank);
     Double getBankCreditSum(@NotNull Bank bank);
