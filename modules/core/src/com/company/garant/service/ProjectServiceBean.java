@@ -13,11 +13,11 @@ import com.haulmont.cuba.core.global.CommitContext;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.View;
 import com.haulmont.thesis.core.entity.Bank;
-import com.haulmont.thesis.core.entity.DocKind;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,41 +31,37 @@ public class ProjectServiceBean implements ProjectService {
     // "Кредит", связанной с этой "Заявкой на кредит"
     // название по п. в задании.
     @Override
-    public Integer getServiceOneSum(@NotNull CreditOrder creditOrder) {
+    public List<Number> getCreditOrderInfo(@NotNull CreditOrder creditOrder) {
 
         if (creditOrder.getContractor() == null || creditOrder.getCredit() == null || creditOrder.getCredit().getBank() == null)
-            return 0; //throw?
+            return null;
 
         List<CreditOrder> creditList = dataManager.load(CreditOrder.class)
                 .query("select o from garant$CreditOrder o where o.contractor.id = :contractorId and o.credit.bank.id = :bankId")
                 .parameter("bankId", creditOrder.getCredit().getBank().getId())
                 .parameter("contractorId", creditOrder.getContractor().getId())
                 .view(View.MINIMAL)
+                .viewProperties("credit.sum")
                 .list();
 
-        return creditList.size();
+        if (creditList.isEmpty())
+            return null;
+        else {
+            final List<Number> creditOrderInfo = new ArrayList<>(2);
+
+            creditOrderInfo.add(0, creditList.size());
+            creditOrderInfo.add(1, creditList.stream()
+                    .filter(co -> co != null && co.getCredit() != null)
+                    .map(CreditOrder::getCredit)
+                    .mapToDouble(Credit::getSum)
+                    .sum());
+            return creditOrderInfo;
+        }
+
     }
 
-
-    //Создать сервис считающий сумму всех кредитов в конкретном банке, банк передается в сервис
+    //2 Создать сервис считающий сумму(getSum) всех кредитов в конкретном банке, банк передается в сервис
     // как параметр
-
-    // ВНИМАНИЕ сервис сделан по прямому требованию задания, но не найдено место, где его применять!!!
-    @Override
-    public Integer getBankCreditNumber(@NotNull Bank bank) {
-        //посчитать все Credit в Bank
-        List<Credit> creditList = dataManager.load(Credit.class)
-                .query("select c from garant$Credit c where c.bank.id = :bankId")
-                .parameter("bankId", bank.getId())
-                .view(View.MINIMAL)
-                .list();
-        return creditList.size();
-    }
-
-
-    //3. Добавьте на экран редактирования кредита поле «Общая сумма», которое будет показывать
-    //общую сумму всех кредитов в выбранном банке. При смене банка сумма будет автоматически
-    //пересчитываться
     @Override
     public Double getBankCreditSum(@NotNull Bank bank) {
         //сумма кредитов банка.
@@ -79,7 +75,7 @@ public class ProjectServiceBean implements ProjectService {
             return 0D;
         else
             return creditList.stream()
-                    .filter(credit -> credit.getSum() != null)
+                    .filter(credit -> credit != null && credit.getSum() != null)
                     .mapToDouble(Credit::getSum)
                     .sum();
     }
@@ -107,12 +103,4 @@ public class ProjectServiceBean implements ProjectService {
 
         dataManager.commit(commitContext);
     }
-
-    @Override
-    public DocKind getCreditOrderDocKind() {
-        return dataManager.load(DocKind.class)
-                .query("select d from df$DocKind d where d.docType.name = 'garant$CreditOrder'")
-                .view(View.LOCAL).one();
-    }
-
 }

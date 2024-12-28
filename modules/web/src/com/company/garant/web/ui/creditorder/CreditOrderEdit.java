@@ -21,6 +21,8 @@ import com.haulmont.thesis.core.entity.Contractor;
 import com.haulmont.thesis.web.ui.simpledoc.SimpleDocEditor;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public class CreditOrderEdit extends SimpleDocEditor<CreditOrder> {
 
     //1. На экране редактирования "Заявки на кредит" измените тип поля "Заемщик" на SearchPickerField
@@ -45,14 +47,6 @@ public class CreditOrderEdit extends SimpleDocEditor<CreditOrder> {
  интуиция говорит, что не должны. поэтому так.
      */
 
-    @Subscribe("creditField")
-    public void onCreditFieldValueChange(HasValue.ValueChangeEvent<Credit> event) {
-        showNotificationIfNeeded(event.getValue());
-    }
-
-    /*
-    не разобрался по ТЗ и пихаю нотифай в оба варианта.
-     */
     @Override
     protected boolean postCommit(boolean committed, boolean close) {
         showNotificationIfNeeded(getEditedEntity().getCredit());
@@ -61,17 +55,22 @@ public class CreditOrderEdit extends SimpleDocEditor<CreditOrder> {
 
 
     private void showNotificationIfNeeded(Credit credit) {
-        if (credit != null && credit.getBank() != null && contractorField.getValue() != null)
-            notifications.create(Notifications.NotificationType.TRAY)
-                    .withCaption(
-                            messages.formatMessage(
-                                    this.getClass(),
-                                    "contractorCreditNumber",
-                                    projectService.getServiceOneSum(getEditedEntity()),
-                                    credit.getBank().getName()
-                            )
-                    )
-                    .show();
+        if (credit != null && credit.getBank() != null && contractorField.getValue() != null) {
+            List<Number> creditOrderInfo = projectService.getCreditOrderInfo(getEditedEntity());
+            if (creditOrderInfo != null)
+                notifications.create(Notifications.NotificationType.TRAY)
+                        .withCaption(
+                                messages.formatMessage(
+                                        this.getClass(),
+                                        "contractorCreditNumber",
+                                        creditOrderInfo.get(0),
+                                        credit.getBank().getName(),
+                                        creditOrderInfo.get(1)
+
+                                )
+                        )
+                        .show();
+        }
     }
 
     @Subscribe("repaymentAmountField")

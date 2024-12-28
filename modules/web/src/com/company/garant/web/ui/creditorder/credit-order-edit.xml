@@ -21,28 +21,32 @@
         <hbox id="mainPane">
             <tabSheet id="tabsheet">
                 <tab id="mainTab">
-                    <form id="form1" width="AUTO" captionPosition="TOP" height="AUTO">
-                        <textField id="bankLabel" property="credit.bank" datasource="cardDs" enable="false"/>
-                        <textField id="repaymentAmountField" property="repaymentAmount" datasource="cardDs"/>
-                        <suggestionPickerField id="creditField" property="credit" datasource="cardDs">
-                            <actions>
-                                <action id="lookup" type="picker_lookup"/>
-                                <action id="clear" type="picker_clear"/>
-                            </actions>
-                        </suggestionPickerField>
-                        <lookupField id="workingTypeField" property="workingType" datasource="cardDs"/>
-                        <!--
-1. На экране редактирования "Заявки на кредит" измените тип поля "Заемщик" на SearchPickerField
-suggestionPickerField из-за воринга на версию тезиса
--->
-                        <suggestionPickerField id="contractorField" property="contractor" datasource="cardDs">
-                            <actions>
-                                <action id="lookup" type="picker_lookup"/>
-                                <action id="clear" type="picker_clear"/>
-                            </actions>
-                        </suggestionPickerField>
-                    </form>
-                    <groupBox id="docInfoGroupBox"/>
+                    <groupBox id="docInfoGroupBox" stylename="edit-area" height="100%" width="100%">
+                        <scrollBox id="infoScrollBox" scrollBars="both" height="100%" contentWidth="100%">
+                            <form id="form1" width="AUTO" captionPosition="TOP" height="AUTO">
+                                <textField id="bankLabel" property="credit.bank" datasource="cardDs" enable="false"/>
+                                <textField id="repaymentAmountField" property="repaymentAmount" datasource="cardDs"/>
+                                <suggestionPickerField id="creditField" property="credit" datasource="cardDs">
+                                    <actions>
+                                        <action id="lookup" type="picker_lookup"/>
+                                        <action id="clear" type="picker_clear"/>
+                                    </actions>
+                                </suggestionPickerField>
+                                <lookupField id="workingTypeField" property="workingType" datasource="cardDs"/>
+                                <!--
+        1. На экране редактирования "Заявки на кредит" измените тип поля "Заемщик" на SearchPickerField
+        suggestionPickerField из-за воринга на версию тезиса
+        -->
+                                <suggestionPickerField id="contractorField" property="contractor" datasource="cardDs">
+                                    <actions>
+                                        <action id="lookup" type="picker_lookup"/>
+                                        <action id="clear" type="picker_clear"/>
+                                    </actions>
+                                </suggestionPickerField>
+                            </form>
+                            <groupBox id="docInfoGroupBox"/>
+                        </scrollBox>
+                    </groupBox>
                 </tab>
                 <tab id="addressTab" caption="msg://address">
                     <form id="form2" width="450px" captionPosition="TOP" height="AUTO">
